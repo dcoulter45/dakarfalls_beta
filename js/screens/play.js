@@ -1,0 +1,47 @@
+game.PlayScreen = me.ScreenObject.extend({
+
+	init: function(){
+
+		//call the parent constructor giving true
+		//as parameter, so that we use the update & draw functions
+		this.parent(true);
+	},
+		
+	// action to perform on state change
+	
+	onResetEvent: function() {	
+	
+		// load a level
+		me.levelDirector.loadLevel("zone2_area01");
+
+		//game.data.score = 0;
+
+		me.audio.play("thisMachineThinks", true); // loop audio
+		 
+		// add our HUD to the game world   
+		this.HUD = new game.HUD.Container();
+		me.game.world.addChild(this.HUD);
+		me.game.world.sort();
+	},
+	
+		
+	// action to perform when leaving this screen (state change)
+
+	onDestroyEvent: function() {
+		
+		// remove the HUD from the game world
+		if(game.data.progress == 'complete'){
+			
+			me.game.world.removeChild(this.HUD);
+		}
+	},
+
+	update: function(){
+
+
+		// delta timing 
+		//game.data.ct = me.timer.getTime();
+		//game.data.dt = game.data.ct - game.data.pt;
+		//game.data.pt = me.timer.getTime();
+	}
+});
