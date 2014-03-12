@@ -32,11 +32,13 @@ game.cameraEntity = me.ObjectEntity.extend({
 
 	update: function(dt){
 
-		this.pos.y = this.player.pos.y;
+		if(!this.player) this.player = me.game.world.getChildByName("mainPlayer")[0];
+
+		this.pos.y = this.player.pos.y || 0;
 
 		if(this.movement == 'player'){
 			
-			this.pos.x = this.player.pos.x+8;
+			this.pos.x = this.player.pos.x+8 || 0;
 		}
 
 		else if( this.movement == 'scrolling' && game.data.level != 'complete'){
@@ -56,6 +58,69 @@ game.cameraEntity = me.ObjectEntity.extend({
 
 });
 
+// ==================
+//  Falling Platform
+// ==================
+
+game.fallingPlatformEntity = me.ObjectEntity.extend({
+
+	init: function(x, y, settings) {
+
+		settings.image = 'objects';
+		settings.spritewidth = 16;
+		settings.spriteheight = 16;
+
+		this.parent(x, y, settings);
+
+		this.type = 'platform';
+		this.gravity = 0;
+		this.setVelocity(1, 2);
+		this.clock = 500;
+		this.startClock = false;
+		this.alwaysUpdate = true;
+
+		this.renderable.addAnimation("zone1",[24]);
+		this.renderable.addAnimation("zone2",[28]);
+		this.renderable.addAnimation("zone3",[26]);
+
+		this.zone = me.game.currentLevel.levelId.split("_")[0];
+		
+		if(this.zone=='zone1') this.renderable.setCurrentAnimation("zone1");
+		else if(this.zone=='zone2') this.renderable.setCurrentAnimation("zone2");
+		else if(this.zone=='zone3') this.renderable.setCurrentAnimation("zone3");
+	},
+
+	onCollision: function(res,obj) {
+
+		// Set level to complete once player reaches the flag
+		if(obj.type == "mainPlayer" && obj.falling && res.y > 0){
+
+			this.startClock = true;
+		}
+
+	},
+
+	update: function(dt){
+
+		// Start Clock
+		if(this.startClock) this.clock -= dt;
+
+		// Drop Platform
+		if(this.clock <= 0){
+
+			this.collidable = false;
+			this.vel.y += this.accel.x * me.timer.tick;
+		}
+
+		// check and update movement
+		this.updateMovement();
+
+		this.parent(dt);
+		return true;
+	}
+
+});
+
 // =================
 //  Moving Platform
 // =================
@@ -64,12 +129,17 @@ game.platformEntity = me.ObjectEntity.extend({
 
 	init: function(x, y, settings) {
 
+		settings.image = 'objects';
+		settings.spritewidth = 16;
+		settings.spriteheight = 16;
+
 		this.parent(x, y, settings);
 
-		settings.spritewidth = 16;
 		this.gravity = 0;
-
 		this.direction = settings.direction;
+		this.setVelocity(0.5, 0.5);
+		this.alwaysUpdate = true;
+		this.type = 'platform';
 
 		if( this.direction == 'x'){
 			
@@ -84,15 +154,17 @@ game.platformEntity = me.ObjectEntity.extend({
 
 		this.moveUp = true;
 
-		this.alwaysUpdate = true;
-
-		this.setVelocity(0.5, 0.5);
-
-		this.type = 'platform';
-
-		this.collidable = true;
-
 		this.reverse = settings.reverse;
+
+		this.renderable.addAnimation("zone1",[24]);
+		this.renderable.addAnimation("zone2",[25]);
+		this.renderable.addAnimation("zone3",[26]);
+
+		this.zone = me.game.currentLevel.levelId.split("_")[0];
+		
+		if(this.zone=='zone1') this.renderable.setCurrentAnimation("zone1");
+		else if(this.zone=='zone2') this.renderable.setCurrentAnimation("zone2");
+		else if(this.zone=='zone3') this.renderable.setCurrentAnimation("zone3");
 
 	},
 

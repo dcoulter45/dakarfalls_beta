@@ -10,9 +10,8 @@ game.EndScreen = me.ScreenObject.extend({
 	onResetEvent: function() {
 
 		this.END = new game.END.Container();
-	
-		me.game.world.addChild(this.END);
 
+		me.game.world.addChild(this.END);
 	}
 
 });

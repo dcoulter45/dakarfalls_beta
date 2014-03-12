@@ -82,7 +82,7 @@ var playButton = me.GUI_Object.extend({
 	init:function(x, y){
 
 		settings = {};
-		settings.image = "title_play";
+		settings.image = (localStorage.save) ? "title_play" : "title_newgame";
 		settings.spritewidth = 61;
 		settings.spriteheight = 91;
 
@@ -103,7 +103,19 @@ var playButton = me.GUI_Object.extend({
 	onClick:function(event){
 
 		me.audio.play("menu_ping");
-		me.state.change(me.state.PLAY);
+
+		if(localStorage.save){
+
+			me.state.change(me.state.PLAY);
+		}
+		else{
+
+			me.game.viewport.fadeIn('#222222', 500, (function () {
+
+				me.state.change(me.state.INTRO);
+			}).bind(this));	
+		}
+		
 		// don't propagate the event
 		return false;
    }

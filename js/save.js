@@ -26,6 +26,7 @@ var save = {
 
 			// Merge Save Data and init Data
 			for (var area in prevSave.zone1) { save.data.zone1[area] = prevSave.zone1[area]; }
+			for (var area in prevSave.zone2) { save.data.zone2[area] = prevSave.zone2[area]; }
 		}
 	},
 

@@ -11,6 +11,7 @@ game.resources = [
 		{name: "ghoul", type:"image", src: "data/img/mobs/ghoul.png"},
 		{name: "specter", type:"image", src: "data/img/mobs/specter.png"},
 		{name: "smoke", type:"image", src: "data/img/mobs/smoke.png"},
+		{name: "npc", type:"image", src: "data/img/mobs/npc.png"},
 
 	// Objects
 
@@ -19,6 +20,7 @@ game.resources = [
 
 	// GUI
 
+		{name: "storyboard", type:"image", src: "data/img/storyboard.png"},
 		{name: "hintBg", type:"image", src: "data/img/gui/hintBg.png"},
 		{name: "complete", type:"image", src: "data/img/gui/complete.png"},
 		{name: "iconSun", type:"image", src: "data/img/gui/iconSun.png"},
@@ -49,13 +51,16 @@ game.resources = [
 		{name: "clouds2", type:"image", src: "data/img/zone1/clouds2.png"},
 		{name: "bg3", type:"image", src: "data/img/zone1/bg3.png"},
 		{name: "clouds3", type:"image", src: "data/img/zone1/clouds3.png"},
-		{name: "platform", type:"image", src: "data/img/zone1/platform.png"},
 
 	// Zone 2
 
 		{name: "zone2sun", type:"image", src: "data/img/zone2/zone2sun.png"},
+		{name: "zone2sunset", type:"image", src: "data/img/zone2/zone2sunset.png"},
+		{name: "zone2moon", type:"image", src: "data/img/zone2/zone2moon.png"},
 		{name: "zone2clouds", type:"image", src: "data/img/zone2/zone2clouds.png"},
 		{name: "zone2bg", type:"image", src: "data/img/zone2/zone2bg.png"},
+		{name: "zone2bg2", type:"image", src: "data/img/zone2/zone2bg2.png"},
+		{name: "zone2bg3", type:"image", src: "data/img/zone2/zone2bg3.png"},
 		{name: "zone2tiles", type:"image", src: "data/img/zone2/zone2tiles.png"},
 		
 		
@@ -65,6 +70,7 @@ game.resources = [
 		{name: "title_play", type:"image", src: "data/img/title/play.png"},
 		{name: "title_play2", type:"image", src: "data/img/title/play2.png"},
 		{name: "title_coop", type:"image", src: "data/img/title/coop.png"},
+		{name: "title_newgame", type:"image", src: "data/img/title/newgame.png"},
 		{name: "title_options", type:"image", src: "data/img/title/options.png"},
 		{name: "title_bg", type:"image", src: "data/img/title/bg_sunset.png"},
 		{name: "title", type:"image", src: "data/img/title/title.png"},
@@ -97,6 +103,10 @@ game.resources = [
 	// Zone 2
 
 		{name: "zone2_area01", type: "tmx", src: "data/map/zone2/area01.tmx"},
+		{name: "zone2_area02", type: "tmx", src: "data/map/zone2/area02.tmx"},
+		{name: "zone2_area03", type: "tmx", src: "data/map/zone2/area03.tmx"},
+		{name: "zone2_area04", type: "tmx", src: "data/map/zone2/area04.tmx"},
+		{name: "zone2_area04b", type: "tmx", src: "data/map/zone2/area04b.tmx"},
 
 
 		{name: "zone2temp", type: "tmx", src: "data/map/zone2/temp.tmx"},

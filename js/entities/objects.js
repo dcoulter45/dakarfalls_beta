@@ -168,6 +168,7 @@ game.redSwitchEntity = me.ObjectEntity.extend({
 		shape.pos.y = 11;
 		shape.resize(14, 5);
 
+		this.alwaysUpdate = true;
 		this.active = false;
 		this.type = 'redSwitch';
 
@@ -177,8 +178,10 @@ game.redSwitchEntity = me.ObjectEntity.extend({
 	},
  
 	onCollision: function(res, obj) {
+
+		//console.log(this.pos.y + " " + (obj.pos.y+16));
 	
-		if(obj.type == "mainPlayer" && obj.falling && res.y > 0 && res.y < 5 && this.active == false){
+		if((obj.type == "mainPlayer" || obj.type == 'crate' ) && obj.falling && res.y > 0 && this.pos.y-4 > obj.pos.y && this.active == false){
 			
 			this.active = true;
 			this.renderable.setCurrentAnimation("down");
@@ -394,12 +397,11 @@ game.crateEntity = me.ObjectEntity.extend({
 		this.renderable.setCurrentAnimation("default");
 
 		this.gravity = 0.1;
-
 		this.setVelocity(1, 2.5);
-
 		this.alwaysUpdate = true;
-
 		this.type = 'crate';
+		this.spawnX = this.pos.x;
+		this.spawnY = this.pos.y-16;
 
 	},
 
@@ -412,6 +414,13 @@ game.crateEntity = me.ObjectEntity.extend({
 
 		this.updateMovement();
 
+		// Respawn Crate in outside world
+		if( this.pos.y > me.game.viewport.bounds.height+32){
+
+			this.pos.x = this.spawnX;
+			this.pos.y = this.spawnY;
+		}
+
 		var res = me.game.world.collide(this, true);
 
 		if(res.length > 0){
@@ -420,19 +429,20 @@ game.crateEntity = me.ObjectEntity.extend({
 
 				if( res.obj.type == "mainPlayer" && this.pos.y < res.obj.pos.y+16 ){
 				
-					// walking right
+					// pushed right
 					if( res.obj.lastflipX==false && res.x <= 0 && res.x >= -1){
 
 						this.vel.x += this.accel.x * me.timer.tick;
 					}
 					
-					// walking left
+					// pushed left
 					else if( res.obj.lastflipX==true && res.x <= 1 && res.x >= 0){
 						
 						this.vel.x -= this.accel.x * me.timer.tick;
 					}
 				}
 
+				// Land on top of other crate
 				if ( res.obj.type == "crate" ){
 
 					if( this.pos.y+16 >= res.obj.pos.y ){
@@ -440,11 +450,23 @@ game.crateEntity = me.ObjectEntity.extend({
 						this.gravity = 0;
 						this.vel.y = 0;
 					}
+				}
 
+				// Don't fall through solid objects
+				if( res.obj.type == "solid"){
+
+					this.vel.y = 0;
+					this.pos.y = res.obj.pos.y-16;
+					this.falling = false;
 				}
-				else{
-					//this.gravity = 0.1;
+
+				if(res.obj.type == 'redSwitch' && this.pos.y+16 <= res.obj.pos.y+12){
+					
+					this.vel.y = 0;
+					this.pos.y = res.obj.pos.y-5;
+					this.falling = false;
 				}
+
 
 			}).bind(this));
 		

@@ -11,6 +11,7 @@ var game = {
 		hintText: '',
 		hintText2: '',
 		hasKey: false,
+		npcText: false
 	},
 
 	// Run on page load.
@@ -51,7 +52,7 @@ var game = {
 		// set the "Play/Ingame" Screen Object
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
-		me.state.set(me.state.END, new game.EndScreen());
+		me.state.set(me.state.INTRO, new game.IntroScreen());
 		 
 		// add our player entity in the entity pool
 		me.pool.register("mainPlayer", game.PlayerEntity);
@@ -61,10 +62,12 @@ var game = {
 		me.pool.register("balloonEntity", game.balloonEntity);
 		me.pool.register("spikeBallEntity", game.spikeBallEntity);
 		me.pool.register("ghoulEntity", game.ghoulEntity);
+		me.pool.register("npcEntity", game.npcEntity);
 		me.pool.register("specterEntity", game.specterEntity);
 		me.pool.register("fireballEntity", game.fireballEntity, true);
 		me.pool.register("smokeEffect", game.smokeEffect, true);
-		me.pool.register("gameInfo", game.HUD.gameInfo, true);
+		me.pool.register("gameInfo", game.HUD.gameInfo, true); 
+		me.pool.register("storyEntity", game.storyEntity, true); 
 		me.pool.register("blueSwitchEntity", game.blueSwitchEntity);
 		me.pool.register("redSwitchEntity", game.redSwitchEntity);
 		me.pool.register("metalBlockEntity", game.metalBlockEntity);
@@ -73,13 +76,14 @@ var game = {
 		me.pool.register("keyEntity", game.keyEntity);
 		me.pool.register("doorEntity", game.doorEntity);
 		me.pool.register("platformEntity", game.platformEntity);
+		me.pool.register("fallingPlatformEntity", game.fallingPlatformEntity);
 		me.pool.register("cameraEntity", game.cameraEntity);
 				 
 		// enable the keyboard
-		me.input.bindKey(me.input.KEY.LEFT,  "left");
+		me.input.bindKey(me.input.KEY.LEFT, "left");
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
-		me.input.bindKey(me.input.KEY.UP, "up");
-		me.input.bindKey(me.input.KEY.P, "pause");
+		me.input.bindKey(me.input.KEY.UP, "up", true);
+		me.input.bindKey(me.input.KEY.P, "pause", true);
 		me.input.bindKey(me.input.KEY.X, "jump", true, false);
 		me.input.bindKey(me.input.KEY.SPACE, "jump", true, false);
 

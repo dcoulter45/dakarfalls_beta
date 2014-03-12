@@ -27,6 +27,7 @@ game.HUD.Container = me.ObjectContainer.extend({
 		this.addChild(new game.HUD.ScoreItem(630, 440));
 		this.addChild(new game.HUD.LevelComplete(630, 440));
 		this.addChild(new game.HUD.Hint(630, 440));
+		this.addChild(new game.HUD.npcText(630, 440));
 		this.addChild(new game.HUD.KeyItem(630, 440));
 		//this.addChild(new game.HUD.gameInfo(630, 440));
 		

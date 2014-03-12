@@ -8,11 +8,11 @@ game.PlayScreen = me.ScreenObject.extend({
 	},
 		
 	// action to perform on state change
-	
+		
 	onResetEvent: function() {	
 	
 		// load a level
-		me.levelDirector.loadLevel("zone2_area01");
+		me.levelDirector.loadLevel("zone2_area04b");
 
 		//game.data.score = 0;
 
@@ -34,14 +34,5 @@ game.PlayScreen = me.ScreenObject.extend({
 			
 			me.game.world.removeChild(this.HUD);
 		}
-	},
-
-	update: function(){
-
-
-		// delta timing 
-		//game.data.ct = me.timer.getTime();
-		//game.data.dt = game.data.ct - game.data.pt;
-		//game.data.pt = me.timer.getTime();
 	}
 });

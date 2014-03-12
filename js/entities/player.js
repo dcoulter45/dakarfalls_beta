@@ -1,6 +1,5 @@
 game.PlayerEntity = me.ObjectEntity.extend({
  
- 
 	init: function(x, y, settings) {
 
 		settings.spritewidth = 16;
@@ -187,7 +186,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
 					// Red Switch
 
-					if(res.obj.type == "redSwitch" && res.y > 0  && this.falling){
+					if(res.obj.type == "redSwitch" && res.y > 0  && this.falling && this.pos.y < res.obj.pos.y-4 ){
 
 						this.vel.y = 0;
 						this.pos.y = res.obj.pos.y-5;

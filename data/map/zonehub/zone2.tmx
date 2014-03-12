@@ -45,11 +45,44 @@
     <property name="vel" value="0.5"/>
    </properties>
   </object>
-  <object name="doorEntity" x="112" y="96" width="16" height="16">
+  <object name="doorEntity" x="176" y="80" width="16" height="16">
    <properties>
     <property name="area" value="zone2_area01"/>
-    <property name="gems" value="6"/>
+    <property name="gems" value="1"/>
     <property name="time" value="sun"/>
+   </properties>
+  </object>
+  <object name="doorEntity" x="256" y="64" width="16" height="16">
+   <properties>
+    <property name="area" value="zone2_area02"/>
+    <property name="gems" value="4"/>
+    <property name="time" value="sun"/>
+   </properties>
+  </object>
+  <object name="doorEntity" x="320" y="80" width="16" height="16">
+   <properties>
+    <property name="area" value="zone2_area03"/>
+    <property name="gems" value="4"/>
+    <property name="time" value="sunset"/>
+   </properties>
+  </object>
+  <object name="doorEntity" x="368" y="64" width="16" height="16">
+   <properties>
+    <property name="area" value="zone2_area04"/>
+    <property name="gems" value="5"/>
+    <property name="time" value="night"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#a40300" name="npc" width="36" height="9">
+  <object name="npcEntity" x="96" y="96" width="16" height="16">
+   <properties>
+    <property name="distance" value="3"/>
+    <property name="text1" value="DID YOU KNOW SOME LEVELS"/>
+    <property name="text2" value="HAVE HIDDEN GEMS"/>
+    <property name="text3" value="TRY CHECKING FOR THEM"/>
+    <property name="text4" value="BEHIND SECRET WALLS"/>
+    <property name="type" value="1"/>
    </properties>
   </object>
  </objectgroup>
