@@ -3,9 +3,11 @@
 var game = {
 
 	data: {
+
 		progress : null,
 		score : 0,
 		level : 'active',
+		defaultGems: 0,
 		totalGems : 0,
 		hint: false,
 		hintText: '',
@@ -72,6 +74,7 @@ var game = {
 		me.pool.register("redSwitchEntity", game.redSwitchEntity);
 		me.pool.register("metalBlockEntity", game.metalBlockEntity);
 		me.pool.register("flagEntity", game.flagEntity);
+		me.pool.register("levelEntity", game.levelEntity);
 		me.pool.register("hintEntity", game.hintEntity);
 		me.pool.register("keyEntity", game.keyEntity);
 		me.pool.register("doorEntity", game.doorEntity);

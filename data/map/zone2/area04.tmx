@@ -106,11 +106,9 @@
     <property name="spritewidth" value="16"/>
    </properties>
   </object>
-  <object name="flagEntity" x="864" y="128" width="16" height="16">
+  <object name="levelEntity" x="864" y="128" width="16" height="16">
    <properties>
-    <property name="image" value="flag"/>
-    <property name="to" value="zone2"/>
-    <property name="totalGems" value="4"/>
+    <property name="to" value="zone2_area04b"/>
    </properties>
   </object>
  </objectgroup>

@@ -20,7 +20,7 @@ game.flagEntity = me.ObjectEntity.extend({
 		this.to = settings.to;
 
 		this.zone = me.game.currentLevel.levelId.split("_")[0];
-		this.area = me.game.currentLevel.levelId.split("_")[1];
+		this.area = me.game.currentLevel.levelId.split("_")[1].substr(0,6);
 
 		this.clock = 0;
 
@@ -54,7 +54,52 @@ game.flagEntity = me.ObjectEntity.extend({
 				}
 
 				game.data.level = 'active';
+				game.data.defaultGems = 0;
 				game.data.score = 0;
+
+				me.levelDirector.loadLevel(this.to);
+
+			}).bind(this));
+		}
+	}
+});
+
+game.levelEntity = me.ObjectEntity.extend({ 
+
+	init: function(x, y, settings) {
+
+		this.parent(x, y, settings);
+
+		this.type = 'flag';
+
+		this.to = settings.to;
+
+		this.clock = 500;
+	},
+
+	onCollision: function(res,obj) {
+
+		// Set level to complete once player reaches the flag
+		if(obj.type == "mainPlayer" && game.data.level == 'active'){
+
+			game.data.level = 'next';
+		}
+
+	},
+
+	update: function(dt){
+
+		if(game.data.level == 'next'){
+
+			this.clock -= dt;
+		}
+
+		if(this.clock < 0){
+
+			me.game.viewport.fadeIn('#222222', 300, (function(){
+
+				game.data.level = 'active';
+				game.data.defaultGems = game.data.score;
 
 				me.levelDirector.loadLevel(this.to);
 
@@ -207,6 +252,7 @@ game.metalBlockEntity = me.ObjectEntity.extend({
 		settings.image = 'objects';
 		settings.spritewidth = 16;
 		settings.spriteheight = 16;
+		settings.repeat = 'repeat';
 
 		this.parent(x, y, settings);
 

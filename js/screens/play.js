@@ -12,7 +12,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {	
 	
 		// load a level
-		me.levelDirector.loadLevel("zone2_area04b");
+		me.levelDirector.loadLevel("zone2_area07");
 
 		//game.data.score = 0;
 

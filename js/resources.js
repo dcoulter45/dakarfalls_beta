@@ -102,12 +102,17 @@ game.resources = [
 
 	// Zone 2
 
+		{name: "zone2_area00", type: "tmx", src: "data/map/zone2/area00.tmx"},
 		{name: "zone2_area01", type: "tmx", src: "data/map/zone2/area01.tmx"},
 		{name: "zone2_area02", type: "tmx", src: "data/map/zone2/area02.tmx"},
 		{name: "zone2_area03", type: "tmx", src: "data/map/zone2/area03.tmx"},
 		{name: "zone2_area04", type: "tmx", src: "data/map/zone2/area04.tmx"},
 		{name: "zone2_area04b", type: "tmx", src: "data/map/zone2/area04b.tmx"},
-
+		{name: "zone2_area05", type: "tmx", src: "data/map/zone2/area05.tmx"},
+		{name: "zone2_area05b", type: "tmx", src: "data/map/zone2/area05b.tmx"},
+		{name: "zone2_area06", type: "tmx", src: "data/map/zone2/area06.tmx"},
+		{name: "zone2_area06b", type: "tmx", src: "data/map/zone2/area06b.tmx"},
+		{name: "zone2_area07", type: "tmx", src: "data/map/zone2/area07.tmx"},
 
 		{name: "zone2temp", type: "tmx", src: "data/map/zone2/temp.tmx"},
 	 

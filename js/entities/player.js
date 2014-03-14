@@ -208,8 +208,13 @@ game.PlayerEntity = me.ObjectEntity.extend({
 							this.pos.x = res.obj.pos.x-14;
 						}
 						else if(res.x < 0){
+
 							this.vel.x = 0;
 							this.pos.x = res.obj.pos.x+14;
+						}
+						else if(res.y < 0 && !this.falling && res.obj.pos.x < this.pos.x+14 && res.obj.pos.x+16 > this.pos.x){
+							
+							this.vel.y = 0;
 						}
 						
 					}
@@ -238,14 +243,18 @@ game.PlayerEntity = me.ObjectEntity.extend({
 						}
 
 						// Move with horizontal platform
-						if(res.obj.direction == 'x' && res.obj.moveUp && this.vel.x == 0){
-
-							this.pos.x -= 0.5;
+						if(res.obj.direction == 'x' && this.vel.x == 0 && res.obj.reverse){
+							
+							if(res.obj.moveUp ) this.pos.x += 0.5;
+							else if(!res.obj.moveUp ) this.pos.x -= 0.5;
 						}
-						else if(res.obj.direction == 'x' && !res.obj.moveUp && this.vel.x == 0){
 
-							this.pos.x += 0.5;
+						else if(res.obj.direction == 'x' && this.vel.x == 0){
+							
+							if(res.obj.moveUp ) this.pos.x -= 0.5;
+							else if(!res.obj.moveUp ) this.pos.x += 0.5;
 						}
+						
 					}
 
 					// Flag
@@ -295,7 +304,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
 			me.game.viewport.fadeIn('#222222',200, (function(){
 
-				game.data.score = 0;
+				game.data.score = game.data.defaultGems;
 				me.levelDirector.reloadLevel();
 			}).bind(this));
 		}

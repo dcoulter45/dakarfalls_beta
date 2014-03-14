@@ -48,7 +48,7 @@
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="12">
-  <object name="mainPlayer" x="256" y="80" width="16" height="16">
+  <object name="mainPlayer" x="48" y="144" width="16" height="16">
    <properties>
     <property name="image" value="sam"/>
     <property name="spritewidth" value="16"/>

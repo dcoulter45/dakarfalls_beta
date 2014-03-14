@@ -123,7 +123,6 @@ game.HUD.gameInfo = me.Renderable.extend({
 		this.x = x;
 		this.y = y;
 
-		this.clock = 1000;
 		this.name = 'gameInfo';
 
 		// Level Info
@@ -131,8 +130,8 @@ game.HUD.gameInfo = me.Renderable.extend({
 		this.zone = area.split("_")[0]
 		this.area2 = "AREA " + this.area.slice(4,6);
 		this.gems = save.data[this.zone][this.area].gems;
-		if(this.gems<10) this.gems = '0'+this.gems;
-		this.totalGems = gems;
+		this.gems = (this.gems<10) ? '0'+this.gems : this.gems;
+		this.totalGems = (gems<10) ? '0'+gems : gems;
 		this.time = time;
 		this.door = door;
 
@@ -150,17 +149,6 @@ game.HUD.gameInfo = me.Renderable.extend({
 		this.font.set("left");
 	},
 
-	update: function(dt){
-
-		this.clock -= dt;
-
-		if(this.clock < 0){
-			
-			//me.game.world.getChildByGUID(this.door).gameInfo = false;
-			//me.game.world.removeChild(this);
-		}
-	},
-
 	draw: function(context){
 
 		context.drawImage(this.img.bg, this.x, this.y);
@@ -168,7 +156,7 @@ game.HUD.gameInfo = me.Renderable.extend({
 		context.drawImage(this.img.time, this.x+5, this.y+5);
 		
 		this.font.draw(context, this.area2, this.x+19, this.y+7);
-		this.font.draw(context, this.gems+'/0'+this.totalGems, this.x+19, this.y+19);
+		this.font.draw(context, this.gems+'/'+this.totalGems, this.x+19, this.y+19);
 	}
 });
 

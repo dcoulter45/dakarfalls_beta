@@ -101,7 +101,7 @@
   <object name="platformEntity" x="544" y="80" width="16" height="16">
    <properties>
     <property name="direction" value="y"/>
-    <property name="distance" value="3"/>
+    <property name="distance" value="4"/>
     <property name="image" value="platform"/>
    </properties>
   </object>
@@ -162,7 +162,7 @@
    <properties>
     <property name="image" value="flag"/>
     <property name="to" value="zone2"/>
-    <property name="totalGems" value="5"/>
+    <property name="totalGems" value="10"/>
    </properties>
   </object>
  </objectgroup>
