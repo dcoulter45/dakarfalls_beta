@@ -186,7 +186,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
 					// Red Switch
 
-					if(res.obj.type == "redSwitch" && res.y > 0  && this.falling && this.pos.y < res.obj.pos.y-4 ){
+					if((res.obj.type == "redSwitch" || res.obj.type == "greenSwitch") && res.y > 0 && this.pos.y < res.obj.pos.y-4  && this.falling){
 
 						this.vel.y = 0;
 						this.pos.y = res.obj.pos.y-5;
@@ -196,7 +196,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 					// Land on Solid Object
 					if(res.obj.type == 'solid'){
 
-						if(res.y > 0 && this.falling && res.obj.pos.x < this.pos.x+14 && res.obj.pos.x+16 > this.pos.x){
+						if(res.y > 0 && this.falling && res.obj.pos.x < this.pos.x+14 && res.obj.pos.x+14 > this.pos.x){
 							
 							this.vel.y = 0;
 							this.pos.y = res.obj.pos.y-16;
@@ -212,7 +212,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 							this.vel.x = 0;
 							this.pos.x = res.obj.pos.x+14;
 						}
-						else if(res.y < 0 && !this.falling && res.obj.pos.x < this.pos.x+14 && res.obj.pos.x+16 > this.pos.x){
+						else if(res.y < 0 && !this.falling && res.obj.pos.x < this.pos.x+14 && res.obj.pos.x+14 > this.pos.x){
 							
 							this.vel.y = 0;
 						}
@@ -245,14 +245,14 @@ game.PlayerEntity = me.ObjectEntity.extend({
 						// Move with horizontal platform
 						if(res.obj.direction == 'x' && this.vel.x == 0 && res.obj.reverse){
 							
-							if(res.obj.moveUp ) this.pos.x += 0.5;
-							else if(!res.obj.moveUp ) this.pos.x -= 0.5;
+							if(res.obj.moveUp ) this.pos.x += 0.4;
+							else if(!res.obj.moveUp ) this.pos.x -= 0.4;
 						}
 
 						else if(res.obj.direction == 'x' && this.vel.x == 0){
 							
-							if(res.obj.moveUp ) this.pos.x -= 0.5;
-							else if(!res.obj.moveUp ) this.pos.x += 0.5;
+							if(res.obj.moveUp ) this.pos.x -= 0.4;
+							else if(!res.obj.moveUp ) this.pos.x += 0.4;
 						}
 						
 					}
@@ -311,13 +311,13 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		
 		// update animation if necessary
 		
-		if (this.vel.x!=0 || this.vel.y!=0) {
+		//if (this.vel.x!=0 || this.vel.y!=0) {
 
 			// update object animation
 			this.parent(dt);
 			return true;
 			
-		}
+		//}
 	},
 
 	die: function(){

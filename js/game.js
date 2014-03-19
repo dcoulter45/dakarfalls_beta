@@ -72,6 +72,7 @@ var game = {
 		me.pool.register("storyEntity", game.storyEntity, true); 
 		me.pool.register("blueSwitchEntity", game.blueSwitchEntity);
 		me.pool.register("redSwitchEntity", game.redSwitchEntity);
+		me.pool.register("greenSwitchEntity", game.greenSwitchEntity);
 		me.pool.register("metalBlockEntity", game.metalBlockEntity);
 		me.pool.register("flagEntity", game.flagEntity);
 		me.pool.register("levelEntity", game.levelEntity);

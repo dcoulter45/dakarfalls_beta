@@ -242,6 +242,71 @@ game.redSwitchEntity = me.ObjectEntity.extend({
 });
 
 // ====================
+//  Green Switch entity
+// ====================
+
+game.greenSwitchEntity = me.ObjectEntity.extend({
+
+	init: function(x, y, settings) {
+
+		settings.image = 'objects';
+		settings.spritewidth = 16;
+		settings.spriteheight = 16;
+
+		this.parent(x, y, settings);
+
+		//this.updateColRect(1, 14, 9, 7);
+		var shape = this.getShape();
+		shape.pos.y = 10;
+		shape.resize(14, 6);
+
+		this.alwaysUpdate = true;
+		this.active = false;
+		this.type = 'greenSwitch';
+
+		this.renderable.addAnimation("default",[19]);
+		this.renderable.addAnimation("down",[20]);
+		this.renderable.setCurrentAnimation("default");
+	},
+ 
+	update: function(dt) {
+
+		var res = me.game.world.collide(this);
+		
+		if(res){
+
+			if((res.obj.type == "mainPlayer" || res.obj.type == 'crate' ) && this.pos.y-4 > res.obj.pos.y && this.active == false){
+
+				this.active = true;
+				this.renderable.setCurrentAnimation("down");
+				var metalBlocks = me.game.world.getChildByName("metalBlock");
+
+				metalBlocks.forEach(function(obj){
+
+					obj.switch();
+				});
+			}
+		}
+
+		else if(this.active == true){
+
+			this.active = false;
+			this.renderable.setCurrentAnimation("default");
+			var metalBlocks = me.game.world.getChildByName("metalBlock");
+
+			metalBlocks.forEach(function(obj){
+
+				obj.switch();
+			});			
+		}
+
+		this.parent(dt);
+		return true;
+
+	}
+});
+
+// ====================
 //  Metal Block entity
 // ====================
 
@@ -439,6 +504,11 @@ game.crateEntity = me.ObjectEntity.extend({
 
 		this.parent(x, y, settings);
 
+		// adjust the bounding box
+		var shape = this.getShape();
+		shape.pos.x = 1;
+		shape.resize(14, shape.height);
+
 		this.renderable.addAnimation("default",[2]);
 		this.renderable.setCurrentAnimation("default");
 
@@ -506,7 +576,7 @@ game.crateEntity = me.ObjectEntity.extend({
 					this.falling = false;
 				}
 
-				if(res.obj.type == 'redSwitch' && this.pos.y+16 <= res.obj.pos.y+12){
+				if((res.obj.type == 'redSwitch' || res.obj.type == 'greenSwitch') && this.pos.y+16 <= res.obj.pos.y+12){
 					
 					this.vel.y = 0;
 					this.pos.y = res.obj.pos.y-5;

@@ -62,6 +62,19 @@ game.resources = [
 		{name: "zone2bg2", type:"image", src: "data/img/zone2/zone2bg2.png"},
 		{name: "zone2bg3", type:"image", src: "data/img/zone2/zone2bg3.png"},
 		{name: "zone2tiles", type:"image", src: "data/img/zone2/zone2tiles.png"},
+
+	// Zone 3
+
+		{name: "zone3sun", type:"image", src: "data/img/zone3/zone3sun.png"},
+		{name: "zone3sunset", type:"image", src: "data/img/zone3/zone3sunset.png"},
+		{name: "zone3moon", type:"image", src: "data/img/zone3/zone3moon.png"},
+		{name: "zone3mountains", type:"image", src: "data/img/zone3/zone3mountains.png"},
+		{name: "zone3mountains2", type:"image", src: "data/img/zone3/zone3mountains2.png"},
+		{name: "zone3clouds1", type:"image", src: "data/img/zone3/clouds1.png"},
+		{name: "zone3bg1", type:"image", src: "data/img/zone3/zone3bg1.png"},
+		{name: "zone3bg2", type:"image", src: "data/img/zone3/zone3bg2.png"},
+		{name: "zone3bg3", type:"image", src: "data/img/zone3/zone3bg3.png"},
+		{name: "zone3tiles", type:"image", src: "data/img/zone3/zone3tiles.png"},
 		
 		
 	// Title Screen
@@ -87,6 +100,7 @@ game.resources = [
 
 		{name: "zone1", type: "tmx", src: "data/map/zonehub/zone1.tmx"},
 		{name: "zone2", type: "tmx", src: "data/map/zonehub/zone2.tmx"},
+		{name: "zone3", type: "tmx", src: "data/map/zonehub/zone3.tmx"},
 
 	// Zone 1
 
@@ -114,7 +128,13 @@ game.resources = [
 		{name: "zone2_area06b", type: "tmx", src: "data/map/zone2/area06b.tmx"},
 		{name: "zone2_area07", type: "tmx", src: "data/map/zone2/area07.tmx"},
 
-		{name: "zone2temp", type: "tmx", src: "data/map/zone2/temp.tmx"},
+	// Zone 3
+
+		{name: "zone3_area00", type: "tmx", src: "data/map/zone3/area00.tmx"},
+		{name: "zone3_area01", type: "tmx", src: "data/map/zone3/area01.tmx"},
+		{name: "zone3_area02", type: "tmx", src: "data/map/zone3/area02.tmx"},
+		{name: "zone3_area03", type: "tmx", src: "data/map/zone3/area03.tmx"},
+
 	 
 	// SFX 
 

@@ -12,13 +12,13 @@ game.PlayScreen = me.ScreenObject.extend({
 	onResetEvent: function() {	
 	
 		// load a level
-		me.levelDirector.loadLevel("zone2_area07");
+		me.levelDirector.loadLevel("zone3_area00");
 
 		//game.data.score = 0;
 
 		me.audio.play("thisMachineThinks", true); // loop audio
 		 
-		// add our HUD to the game world   
+		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();
 		me.game.world.addChild(this.HUD);
 		me.game.world.sort();

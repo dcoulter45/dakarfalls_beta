@@ -137,7 +137,7 @@ game.platformEntity = me.ObjectEntity.extend({
 
 		this.gravity = 0;
 		this.direction = settings.direction;
-		this.setVelocity(0.5, 0.5);
+		this.setVelocity(0.4, 0.4);
 		this.alwaysUpdate = true;
 		this.type = 'platform';
 
