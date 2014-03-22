@@ -88,6 +88,7 @@ var game = {
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.UP, "up", true);
 		me.input.bindKey(me.input.KEY.P, "pause", true);
+		me.input.bindKey(me.input.KEY.ENTER, "enter", true);
 		me.input.bindKey(me.input.KEY.X, "jump", true, false);
 		me.input.bindKey(me.input.KEY.SPACE, "jump", true, false);
 

@@ -264,8 +264,8 @@ game.greenSwitchEntity = me.ObjectEntity.extend({
 		this.active = false;
 		this.type = 'greenSwitch';
 
-		this.renderable.addAnimation("default",[19]);
-		this.renderable.addAnimation("down",[20]);
+		this.renderable.addAnimation("default",[8]);
+		this.renderable.addAnimation("down",[9]);
 		this.renderable.setCurrentAnimation("default");
 	},
  
@@ -569,11 +569,21 @@ game.crateEntity = me.ObjectEntity.extend({
 				}
 
 				// Don't fall through solid objects
-				if( res.obj.type == "solid"){
+				if( res.obj.type == "solid" && res.y > 0){
 
 					this.vel.y = 0;
 					this.pos.y = res.obj.pos.y-16;
 					this.falling = false;
+				}
+				else if( res.obj.type == "solid" && res.x > 0 ){
+
+					this.vel.x = 0;
+					this.pos.x = res.obj.pos.x - 15; 
+				}
+				else if( res.obj.type == "solid" && res.x < 0 ){
+
+					this.vel.x = 0;
+					this.pos.x = res.obj.pos.x + 15; 
 				}
 
 				if((res.obj.type == 'redSwitch' || res.obj.type == 'greenSwitch') && this.pos.y+16 <= res.obj.pos.y+12){

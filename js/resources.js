@@ -29,6 +29,7 @@ game.resources = [
 		{name: "iconLock", type:"image", src: "data/img/gui/iconLock.png"},
 		{name: "iconGem", type:"image", src: "data/img/gui/iconGem.png"},
 		{name: "infoBg", type:"image", src: "data/img/gui/infoBg.png"},
+		{name: "pauseScreen", type:"image", src: "data/img/gui/pauseScreen.png"},
 
 	// Touch UI
 
@@ -134,8 +135,16 @@ game.resources = [
 		{name: "zone3_area01", type: "tmx", src: "data/map/zone3/area01.tmx"},
 		{name: "zone3_area02", type: "tmx", src: "data/map/zone3/area02.tmx"},
 		{name: "zone3_area03", type: "tmx", src: "data/map/zone3/area03.tmx"},
+		{name: "zone3_area04", type: "tmx", src: "data/map/zone3/area04.tmx"},
+		{name: "zone3_area04b", type: "tmx", src: "data/map/zone3/area04b.tmx"},
+		{name: "zone3_area05", type: "tmx", src: "data/map/zone3/area05.tmx"},
+		{name: "zone3_area05b", type: "tmx", src: "data/map/zone3/area05b.tmx"},
+		{name: "zone3_area06", type: "tmx", src: "data/map/zone3/area06.tmx"},
+		{name: "zone3_area06b", type: "tmx", src: "data/map/zone3/area06b.tmx"},
+	 	{name: "zone3_area07", type: "tmx", src: "data/map/zone3/area07.tmx"},
+	 	{name: "zone3_area07b", type: "tmx", src: "data/map/zone3/area07b.tmx"},
+	 	{name: "zone3_area07c", type: "tmx", src: "data/map/zone3/area07c.tmx"},
 
-	 
 	// SFX 
 
 		{name: "jump", type: "audio", src: "data/sfx/", channel : 2},

@@ -28,7 +28,7 @@ game.HUD.Container = me.ObjectContainer.extend({
 		this.addChild(new game.HUD.LevelComplete(630, 440));
 		this.addChild(new game.HUD.Hint(630, 440));
 		this.addChild(new game.HUD.npcText(630, 440));
-		this.addChild(new game.HUD.KeyItem(630, 440));
+		this.addChild(new game.HUD.PauseScreen(630, 440));
 		//this.addChild(new game.HUD.gameInfo(630, 440));
 		
 		var is_touch_device = 'ontouchstart' in document.documentElement;
@@ -272,6 +272,30 @@ game.HUD.LevelComplete = me.Renderable.extend( {
 
 			this.fontRight.draw(context, game.data.score+'/'+game.data.totalGems, 138, 50);
 		}
+	}
+
+});
+
+// ===============
+// Level Complete
+// ===============
+
+game.HUD.PauseScreen = me.Renderable.extend( {
+
+	init: function(x, y) {
+
+		this.floating = true;
+
+		this.pauseScreen = me.loader.getImage("pauseScreen");
+	},
+
+	draw: function(context){
+
+		if(me.state.isPaused()){
+			
+			context.drawImage(this.pauseScreen, 0, 0);
+		}
+
 	}
 
 });

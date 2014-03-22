@@ -309,15 +309,38 @@ game.PlayerEntity = me.ObjectEntity.extend({
 			}).bind(this));
 		}
 		
-		// update animation if necessary
-		
-		//if (this.vel.x!=0 || this.vel.y!=0) {
+		// Pause Screen
 
-			// update object animation
-			this.parent(dt);
-			return true;
+		if (me.input.isKeyPressed("pause")) {
 			
-		//}
+			me.state.pause();
+
+			var resume_loop = setInterval(function check_resume() {
+				
+				if(me.input.isKeyPressed("pause")) {
+				
+					clearInterval(resume_loop);
+					me.state.resume();
+				}
+
+				if(me.input.isKeyPressed("enter")) {
+				
+					clearInterval(resume_loop);
+					me.state.resume();
+					
+					me.game.viewport.fadeIn('#222222',200, (function(){
+
+						game.data.score = game.data.defaultGems;
+						me.levelDirector.reloadLevel();
+					}).bind(this));
+				}
+			}, 100);
+		}
+
+		// update object animation
+		this.parent(dt);
+		return true;
+			
 	},
 
 	die: function(){
