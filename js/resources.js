@@ -2,7 +2,8 @@ game.resources = [
 
 	// Graphics. 
 
-		{name: "sam", type:"image", src: "data/img/sam.png"},
+		{name: "player1", type:"image", src: "data/img/player1.png"},
+		{name: "player2", type:"image", src: "data/img/player2.png"},
 		{name: "metatiles", type:"image", src: "data/img/metatiles.png"},
 
 	// Mobs
@@ -76,6 +77,18 @@ game.resources = [
 		{name: "zone3bg2", type:"image", src: "data/img/zone3/zone3bg2.png"},
 		{name: "zone3bg3", type:"image", src: "data/img/zone3/zone3bg3.png"},
 		{name: "zone3tiles", type:"image", src: "data/img/zone3/zone3tiles.png"},
+
+	// Zone 4 
+
+		{name: "zone4sunset", type:"image", src: "data/img/zone4/zone4sunset.png"},
+		{name: "zone4moon", type:"image", src: "data/img/zone4/zone4moon.png"},
+		{name: "zone4trees1", type:"image", src: "data/img/zone4/zone4trees1.png"},
+		{name: "zone4trees2", type:"image", src: "data/img/zone4/zone4trees2.png"},
+		{name: "zone4clouds2", type:"image", src: "data/img/zone4/clouds2.png"},
+		{name: "zone4clouds3", type:"image", src: "data/img/zone4/clouds3.png"},
+		{name: "zone4bg2", type:"image", src: "data/img/zone4/zone4bg2.png"},
+		{name: "zone4bg3", type:"image", src: "data/img/zone4/zone4bg3.png"},
+		{name: "zone4tiles", type:"image", src: "data/img/zone4/zone4tiles.png"},
 		
 		
 	// Title Screen
@@ -88,6 +101,9 @@ game.resources = [
 		{name: "title_options", type:"image", src: "data/img/title/options.png"},
 		{name: "title_bg", type:"image", src: "data/img/title/bg_sunset.png"},
 		{name: "title", type:"image", src: "data/img/title/title.png"},
+		{name: "options_back", type:"image", src: "data/img/title/back.png"},
+		{name: "options_fullscreen", type:"image", src: "data/img/title/fullscreen.png"},
+		{name: "options_save", type:"image", src: "data/img/title/save.png"},
 		
 	// Fonts
 		
@@ -102,6 +118,7 @@ game.resources = [
 		{name: "zone1", type: "tmx", src: "data/map/zonehub/zone1.tmx"},
 		{name: "zone2", type: "tmx", src: "data/map/zonehub/zone2.tmx"},
 		{name: "zone3", type: "tmx", src: "data/map/zonehub/zone3.tmx"},
+		{name: "zone4", type: "tmx", src: "data/map/zonehub/zone4.tmx"},
 
 	// Zone 1
 
@@ -141,9 +158,20 @@ game.resources = [
 		{name: "zone3_area05b", type: "tmx", src: "data/map/zone3/area05b.tmx"},
 		{name: "zone3_area06", type: "tmx", src: "data/map/zone3/area06.tmx"},
 		{name: "zone3_area06b", type: "tmx", src: "data/map/zone3/area06b.tmx"},
-	 	{name: "zone3_area07", type: "tmx", src: "data/map/zone3/area07.tmx"},
-	 	{name: "zone3_area07b", type: "tmx", src: "data/map/zone3/area07b.tmx"},
-	 	{name: "zone3_area07c", type: "tmx", src: "data/map/zone3/area07c.tmx"},
+		{name: "zone3_area07", type: "tmx", src: "data/map/zone3/area07.tmx"},
+		{name: "zone3_area07b", type: "tmx", src: "data/map/zone3/area07b.tmx"},
+		{name: "zone3_area07c", type: "tmx", src: "data/map/zone3/area07c.tmx"},
+
+	// Zone 4
+
+		{name: "zone4_area00", type: "tmx", src: "data/map/zone4/area00.tmx"},
+		{name: "zone4_area01", type: "tmx", src: "data/map/zone4/area01.tmx"},
+		{name: "zone4_area01b", type: "tmx", src: "data/map/zone4/area01b.tmx"},
+		{name: "zone4_area02", type: "tmx", src: "data/map/zone4/area02.tmx"},
+
+	 // Multiplayer
+
+	 	{name: "zone9_area00", type: "tmx", src: "data/map/multi/area01.tmx"},
 
 	// SFX 
 

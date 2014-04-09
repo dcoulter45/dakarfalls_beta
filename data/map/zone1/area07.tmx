@@ -110,7 +110,7 @@
    <properties>
     <property name="image" value="flag"/>
     <property name="to" value="zone1"/>
-    <property name="totalGems" value="9"/>
+    <property name="totalGems" value="5"/>
    </properties>
   </object>
  </objectgroup>
@@ -139,7 +139,7 @@
   <object name="platformEntity" x="192" y="144" width="16" height="16">
    <properties>
     <property name="direction" value="y"/>
-    <property name="distance" value="3"/>
+    <property name="distance" value="2"/>
     <property name="image" value="platform"/>
    </properties>
   </object>
@@ -165,25 +165,7 @@
     <property name="spritewidth" value="16"/>
    </properties>
   </object>
-  <object name="gemEntity" x="208" y="112" width="16" height="16">
-   <properties>
-    <property name="image" value="gem"/>
-    <property name="spritewidth" value="16"/>
-   </properties>
-  </object>
   <object name="gemEntity" x="112" y="176" width="16" height="16">
-   <properties>
-    <property name="image" value="gem"/>
-    <property name="spritewidth" value="16"/>
-   </properties>
-  </object>
-  <object name="gemEntity" x="160" y="288" width="16" height="16">
-   <properties>
-    <property name="image" value="gem"/>
-    <property name="spritewidth" value="16"/>
-   </properties>
-  </object>
-  <object name="gemEntity" x="272" y="272" width="16" height="16">
    <properties>
     <property name="image" value="gem"/>
     <property name="spritewidth" value="16"/>
@@ -196,12 +178,6 @@
    </properties>
   </object>
   <object name="gemEntity" x="240" y="192" width="16" height="16">
-   <properties>
-    <property name="image" value="gem"/>
-    <property name="spritewidth" value="16"/>
-   </properties>
-  </object>
-  <object name="gemEntity" x="272" y="192" width="16" height="16">
    <properties>
     <property name="image" value="gem"/>
     <property name="spritewidth" value="16"/>

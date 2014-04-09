@@ -7,20 +7,31 @@ game.TitleScreen = me.ScreenObject.extend({
 
 		var screen = document.getElementById('screen');
 
-		// Rect for play button
-		//var button = { play: new me.Rect(new me.Vector2d(22, 16), 61, 91)};
-		var button = { play: new me.Rect(new me.Vector2d(22, 16), 61, 91)};
+		// Dection zones for buttons
+		var mainButtons = { play: new me.Rect(new me.Vector2d(32, 21), 61, 91), 
+							coop: new me.Rect(new me.Vector2d(103, 21), 61, 42), 
+							settings: new me.Rect(new me.Vector2d(103, 70), 61, 42)};
 
-		// Check mouse location for hover
+		var optionButtons = { back: new me.Rect(new me.Vector2d(35, 35), 132, 18), 
+							  fullscreen: new me.Rect(new me.Vector2d(35, 57), 132, 18), 
+							  save: new me.Rect(new me.Vector2d(35, 80), 132, 18)};
+
+		// Check mouse location against dection zones
 		me.input.registerPointerEvent("mousemove", me.game.viewport, function(e){
 
-			if( button.play.containsPoint(e.gameX, e.gameY) ){
+			this.titleContainer = me.game.world.getChildByName("TITLE")[0];
 
-				screen.style.cursor = 'pointer';
+			if(this.titleContainer && this.titleContainer.state=="mainMenu"){
+				
+				screen.style.cursor = ( mainButtons.play.containsPoint(e.gameX, e.gameY) || 
+										mainButtons.coop.containsPoint(e.gameX, e.gameY) || 
+										mainButtons.settings.containsPoint(e.gameX, e.gameY) ) ? "pointer" : "default";
 			}
-			else{
+			else if(this.titleContainer && this.titleContainer.state=="options"){
 
-				screen.style.cursor = 'default';
+				screen.style.cursor = ( optionButtons.back.containsPoint(e.gameX, e.gameY) || 
+										optionButtons.fullscreen.containsPoint(e.gameX, e.gameY) || 
+										optionButtons.save.containsPoint(e.gameX, e.gameY) ) ? "pointer" : "default";
 			}
 
 		}, true);
@@ -33,9 +44,9 @@ game.TitleScreen = me.ScreenObject.extend({
 		this.TITLE = new game.TITLE.Container();
 	
 		me.game.world.addChild(this.TITLE);
- 
-		// enable the keyboard
-		me.input.bindKey(me.input.KEY.ENTER, "enter", true); 
+
+ 		// enable the keyboard
+		//me.input.bindKey(me.input.KEY.ENTER, "enter", true); 
  
 	},
  
@@ -46,7 +57,7 @@ game.TitleScreen = me.ScreenObject.extend({
 		
 		me.input.releasePointerEvent("mousemove", me.game.viewport);
 
-		me.input.unbindKey(me.input.KEY.ENTER);
+		//me.input.unbindKey(me.input.KEY.ENTER);
 	}
  
 });
@@ -67,16 +78,48 @@ game.TITLE.Container = me.ObjectContainer.extend({
  
 		// give a name
 		this.name = "TITLE";
+		this.type = "menuScreen";
+		this.state = "mainMenu";
 		 
 		// add children
-		this.addChild(new playButton(22,16), this.z+1 );
-		this.addChild(new coopButton());
-		this.addChild(new settingsButton());
+		this.addChild(new playButton(32,21));
+		this.addChild(new coopButton(103, 21));
+		this.addChild(new settingsButton(103, 70));
+
 		this.addChild(new titleBg());
+	},
+
+	displayOptions: function(){
+
+		this.state = "options";
+
+		this.removeChild(me.game.world.getChildByName("playButton")[0]);
+		this.removeChild(me.game.world.getChildByName("coopButton")[0]);
+		this.removeChild(me.game.world.getChildByName("settingsButton")[0]);
+
+		this.addChild(new backButton(35, 35), this.z+1);
+		this.addChild(new fullscreenButton(35, 57), this.z+1);
+		this.addChild(new saveButton(35, 80), this.z+1);
+	},
+
+	displayMainMenu: function(){
+
+		this.state = "mainMenu";
+
+		this.removeChild(me.game.world.getChildByName("backButton")[0]);
+		this.removeChild(me.game.world.getChildByName("fullscreenButton")[0]);
+		this.removeChild(me.game.world.getChildByName("saveButton")[0]);
+
+		this.addChild(new playButton(32,21), this.z+1);
+		this.addChild(new coopButton(103, 21), this.z+1);
+		this.addChild(new settingsButton(103, 70), this.z+1);
 	}
 });
 
-// create a basic GUI Object
+// ============
+//  Main Menu
+// ============
+
 var playButton = me.GUI_Object.extend({
 
 	init:function(x, y){
@@ -86,19 +129,10 @@ var playButton = me.GUI_Object.extend({
 		settings.spritewidth = 61;
 		settings.spriteheight = 91;
 
-		// parent constructor
+		this.name = "playButton";
 		this.parent(x, y, settings);
 	},
 
-	update:function(){
-
-		// enter pressed ?
-		if (me.input.isKeyPressed('enter')) {
-			
-		}
-	},
-
-	// output something in the console
 	// when the object is clicked
 	onClick:function(event){
 
@@ -121,37 +155,124 @@ var playButton = me.GUI_Object.extend({
    }
 });
 
-var coopButton = me.Renderable.extend({
+var coopButton = me.GUI_Object.extend({
 
 	init:function(x,y){
 
-		this.floating = true;
+		settings = {};
+		settings.image = "title_coop";
+		settings.spritewidth = 61;
+		settings.spriteheight = 42;
 
-		this.image = me.loader.getImage("title_coop");
+		this.name = "coopButton";
+		this.parent(x, y, settings);
 	},
 
-	draw:function(context){
+	onClick:function(event){
 
-		context.drawImage(this.image, 93, 16);
+		me.audio.play("menu_ping");
+
+		game.data.multiplayer = true;
+		me.state.change(me.state.PLAY);
 	}
 
 });
 
-var settingsButton = me.Renderable.extend({
+var settingsButton = me.GUI_Object.extend({
 
 	init:function(x,y){
 
-		this.floating = true;
+		settings = {};
+		settings.image = "title_options";
+		settings.spritewidth = 61;
+		settings.spriteheight = 42;
 
-		this.image = me.loader.getImage("title_options");
+		this.name = "settingsButton";
+		this.parent(x, y, settings);
 	},
 
-	draw:function(context){
-
-		context.drawImage(this.image, 93, 65);
+	onClick:function(event) {
+		
+		me.audio.play("menu_ping");
+		me.game.world.getChildByName("TITLE")[0].displayOptions();
 	}
-
 });
+
+// ============
+//  Options
+// ============
+
+var backButton = me.GUI_Object.extend({
+
+	init:function(x,y){
+
+		settings = {};
+		settings.image = "options_back";
+		settings.spritewidth = 132;
+		settings.spriteheight = 18;
+
+		this.name = "backButton";
+		this.parent(x, y, settings);
+	},
+
+	onClick:function(event){
+
+		me.audio.play("menu_ping");
+		me.game.world.getChildByName("TITLE")[0].displayMainMenu();
+	}
+});
+
+var fullscreenButton = me.GUI_Object.extend({
+
+	init:function(x,y){
+
+		settings = {};
+		settings.image = "options_fullscreen";
+		settings.spritewidth = 132;
+		settings.spriteheight = 18;
+
+		this.name = "fullscreenButton";
+		this.parent(x, y, settings);
+	},
+
+	onClick:function(event){
+
+		launchFullscreen(screen);
+	}
+});
+
+var saveButton = me.GUI_Object.extend({
+
+	init:function(x,y){
+
+		settings = {};
+		settings.image = "options_save";
+		settings.spritewidth = 132;
+		settings.spriteheight = 18;
+
+		this.name = "saveButton";
+		this.parent(x, y, settings);
+	},
+
+	onClick:function(event){
+
+		var deleteSave = confirm("Are you sure you want to delete your save data");
+
+		if(deleteSave == true){
+
+			alert("Save Data Deleted");
+		}
+		else{
+
+
+		}
+	}
+});
+
+
+// ============
+// Background
+// ============
 
 var titleBg = me.Renderable.extend({
 

@@ -120,16 +120,28 @@ game.HUD.gameInfo = me.Renderable.extend({
 		//this.floating = true;
 		this.parent(new me.Vector2d(x, y), 67, 31); 
 
-		this.x = x;
-		this.y = y;
-
 		this.name = 'gameInfo';
 
 		// Level Info
 		this.area = area.split("_")[1];
-		this.zone = area.split("_")[0]
-		this.area2 = "AREA " + this.area.slice(4,6);
-		this.gems = save.data[this.zone][this.area].gems;
+		this.zone = area.split("_")[0];
+
+		if(this.area){
+
+			this.x = x;
+			this.y = y;
+			this.levelName = "AREA " + this.area.slice(4,6);
+			this.gems = save.data[this.zone][this.area].gems;
+		}
+		else{
+
+			this.x = x+10;
+			this.y = y+5;
+			this.levelName = "ZONE "+this.zone.slice(4,5);
+			this.prevZone = this.zone.slice(4,5)-1;
+			this.gems = save.data["zone"+this.prevZone].gems;
+		}
+		
 		this.gems = (this.gems<10) ? '0'+this.gems : this.gems;
 		this.totalGems = (gems<10) ? '0'+gems : gems;
 		this.time = time;
@@ -155,7 +167,7 @@ game.HUD.gameInfo = me.Renderable.extend({
 		context.drawImage(this.img.gem, this.x+7, this.y+17);
 		context.drawImage(this.img.time, this.x+5, this.y+5);
 		
-		this.font.draw(context, this.area2, this.x+19, this.y+7);
+		this.font.draw(context, this.levelName, this.x+19, this.y+7);
 		this.font.draw(context, this.gems+'/'+this.totalGems, this.x+19, this.y+19);
 	}
 });
@@ -266,11 +278,11 @@ game.HUD.LevelComplete = me.Renderable.extend( {
 		
 			context.drawImage(this.completeBar, 0, 30);
 
-			this.font.draw(context, 'LEVEL COMPLETE', 41, 34);
+			this.font.draw(context, 'LEVEL COMPLETE', 51, 34);
 
-			this.font.draw(context, 'GEMS:', 41, 50);
+			this.font.draw(context, 'GEMS:', 51, 50);
 
-			this.fontRight.draw(context, game.data.score+'/'+game.data.totalGems, 138, 50);
+			this.fontRight.draw(context, game.data.score+'/'+game.data.totalGems, 148, 50);
 		}
 	}
 

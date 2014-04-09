@@ -79,9 +79,9 @@ game.fallingPlatformEntity = me.ObjectEntity.extend({
 		this.startClock = false;
 		this.alwaysUpdate = true;
 
-		this.renderable.addAnimation("zone1",[24]);
+		this.renderable.addAnimation("zone1",[27]);
 		this.renderable.addAnimation("zone2",[28]);
-		this.renderable.addAnimation("zone3",[26]);
+		this.renderable.addAnimation("zone3",[29]);
 
 		this.zone = me.game.currentLevel.levelId.split("_")[0];
 		
@@ -159,12 +159,14 @@ game.platformEntity = me.ObjectEntity.extend({
 		this.renderable.addAnimation("zone1",[24]);
 		this.renderable.addAnimation("zone2",[25]);
 		this.renderable.addAnimation("zone3",[26]);
+		this.renderable.addAnimation("zone4",[30]);
 
 		this.zone = me.game.currentLevel.levelId.split("_")[0];
 		
 		if(this.zone=='zone1') this.renderable.setCurrentAnimation("zone1");
 		else if(this.zone=='zone2') this.renderable.setCurrentAnimation("zone2");
 		else if(this.zone=='zone3') this.renderable.setCurrentAnimation("zone3");
+		else if(this.zone=='zone4') this.renderable.setCurrentAnimation("zone4");
 
 	},
 

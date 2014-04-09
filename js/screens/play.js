@@ -10,11 +10,21 @@ game.PlayScreen = me.ScreenObject.extend({
 	// action to perform on state change
 		
 	onResetEvent: function() {	
-	
-		// load a level
-		me.levelDirector.loadLevel("zone3");
 
-		//game.data.score = 0;
+		var lastZone = localStorage.lastZone || "zone1";	
+
+		// load a level
+		// Single Player
+		if(!game.data.multiplayer){
+
+			me.levelDirector.loadLevel(lastZone);
+		}
+		// Multiplayer
+		else{
+
+			me.levelDirector.loadLevel("zone9_area00");
+		}
+		
 
 		me.audio.play("thisMachineThinks", true); // loop audio
 		 

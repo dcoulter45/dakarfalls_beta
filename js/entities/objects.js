@@ -68,13 +68,18 @@ game.levelEntity = me.ObjectEntity.extend({
 
 	init: function(x, y, settings) {
 
+		settings.image = 'objects';
+		settings.spritewidth = 16;
+		settings.spriteheight = 16;
+
 		this.parent(x, y, settings);
 
 		this.type = 'flag';
-
 		this.to = settings.to;
-
 		this.clock = 500;
+
+		this.renderable.addAnimation("default",[39]);
+		this.renderable.setCurrentAnimation("default");
 	},
 
 	onCollision: function(res,obj) {
@@ -105,6 +110,45 @@ game.levelEntity = me.ObjectEntity.extend({
 
 			}).bind(this));
 		}
+	}
+});
+
+game.zoneEntity = me.ObjectEntity.extend({ 
+
+	init: function(x, y, settings) {
+
+		settings.image = 'objects';
+		settings.spritewidth = 16;
+		settings.spriteheight = 16;
+
+		this.parent(x, y, settings);
+
+		this.type = 'zone';
+		this.to = settings.to;
+
+		this.newX = settings.newX*16;
+		this.newY = settings.newY*16+16;
+
+		this.renderable.addAnimation("default",[38]);
+		this.renderable.setCurrentAnimation("default");
+	},
+
+	onCollision: function(res,obj) {
+
+		// Set level to complete once player reaches the flag
+		if(obj.type == "mainPlayer" && game.data.level == 'active'){
+
+			me.game.viewport.fadeIn('#222222', 300, (function(){
+
+				save.data.spawn.x = this.newX;
+				save.data.spawn.y = this.newY;
+
+				localStorage.lastZone = this.to;
+				me.levelDirector.loadLevel(this.to);
+
+			}).bind(this));
+		}
+
 	}
 });
 
@@ -410,9 +454,20 @@ game.doorEntity = me.ObjectEntity.extend({
 
 	init: function(x, y, settings) {
 
+		this.bigDoor = (settings.width > 16) ? true : false;
+
 		settings.image = 'objects';
-		settings.spritewidth = 16;
-		settings.spriteheight = 16;
+
+		if(this.bigDoor){
+		
+			settings.spritewidth = 32;
+			settings.spriteheight = 32;
+		}
+		else{
+
+			settings.spritewidth = 16;
+			settings.spriteheight = 16;
+		}
 
 		this.parent(x, y, settings);
 
@@ -439,8 +494,19 @@ game.doorEntity = me.ObjectEntity.extend({
 			this.locked = true;
 		}
 
-		this.renderable.addAnimation("open",[7]);
-		this.renderable.addAnimation("locked",[23]);
+		if(this.bigDoor){
+
+			this.renderable.addAnimation("open",[9]);
+			this.renderable.addAnimation("locked",[8]);
+			this.locked = (save.data[me.game.currentLevel.levelId].gems >= this.gems) ? false : true;
+
+		}
+		else{
+
+			this.renderable.addAnimation("open",[7]);
+			this.renderable.addAnimation("locked",[23]);
+		}
+		
 
 		if(this.locked)	this.renderable.setCurrentAnimation("locked");
 		else this.renderable.setCurrentAnimation("open");
@@ -458,9 +524,18 @@ game.doorEntity = me.ObjectEntity.extend({
 
 				game.data.level = 'active';
 
-				// Set Spawn for return to hub
-				save.data.spawn.x = this.pos.x;
-				save.data.spawn.y = this.pos.y;
+				// Set Spawn point for return to hub
+				if(!this.bigDoor){
+				
+					save.data.spawn.x = this.pos.x;
+					save.data.spawn.y = this.pos.y;
+				}
+
+				// Set default zone to load
+				if(this.bigDoor){
+
+					localStorage.lastZone = this.nextArea;
+				}
 
 				// Load Level
 				me.levelDirector.loadLevel(this.nextArea);

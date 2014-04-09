@@ -2,8 +2,13 @@ game.PlayerEntity = me.ObjectEntity.extend({
  
 	init: function(x, y, settings) {
 
+		// Is player 1 or 2
+		this.player = settings.player;
+
 		settings.spritewidth = 16;
 		settings.spriteheight = 16;
+		settings.image = "player1";
+		if(this.player == 2) settings.image = "player2";
 
 		// call the constructor
 		this.parent(x, y, settings);
@@ -37,6 +42,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 		this.renderable.addAnimation("behind",[8]);
 		this.renderable.setCurrentAnimation("stand");
 
+		//
 		if(me.game.currentLevel.levelId.length < 6 && save.data.spawn.x !== 0 ){
 
 			this.pos.x = save.data.spawn.x;
@@ -60,55 +66,103 @@ game.PlayerEntity = me.ObjectEntity.extend({
 			this.die();
 		}
 
+		// If behind the camera
 		if( this.pos.x < me.game.world.getChildByName("cameraEntity")[0].pos.x-130 && this.pos.x < me.game.viewport.bounds.width-212 && this.alive ){
 
 			this.die();
 		}
 
-		if ( (me.input.isKeyPressed('right') && this.alive) || this.state=='done') {
-			
-			// unflip the sprite
-			this.flipX(false);
-
-			// update the entity velocity
-			//this.vel.x += this.speed;
-			this.vel.x += this.accel.x * me.timer.tick
-		}  
-		else if (me.input.isKeyPressed('left') && this.alive) {
-			
-			// flip the sprite on horizontal axis
-			this.flipX(true);
-			
-			// update the entity velocity
-			this.vel.x -= this.accel.x * me.timer.tick
-		}
-		else {
-
-			this.vel.x = 0;
-		}
-
 		// =========
-		// Jumping
+		// Controls
 		// =========
 
-		if (me.input.isKeyPressed('jump') && this.alive) {
-			
-			// make sure we are not already jumping or falling
-			if (!this.jumping && !this.falling) {
-				
-				//this.setVelocity(1.2, 2.5);
-				
-				me.audio.play("jump");
+		// Player 1
+		if(this.player == 1 || !this.player){
 
-				// set current vel to the maximum defined value
-				// gravity will then do the rest
-				this.vel.y = -this.maxVel.y * me.timer.tick;
+			// Walk Right
+			if ( (me.input.isKeyPressed('right') && this.alive) || this.state=='doneRight') {
 				
-				// set the jumping flag
-				this.jumping = true;
+				// unflip the sprite
+				this.flipX(false);
+				// update the entity velocity
+				this.vel.x += this.accel.x * me.timer.tick
 			}
- 
+			
+			// Walk Left
+			else if ( (me.input.isKeyPressed('left') && this.alive) || this.state=='doneLeft' ) {
+				
+				// flip the sprite on horizontal axis
+				this.flipX(true);
+				// update the entity velocity
+				this.vel.x -= this.accel.x * me.timer.tick
+			}
+			else {
+
+				this.vel.x = 0;
+			}
+
+			// Jump
+			if (me.input.isKeyPressed('jump') && this.alive) {
+			
+				// make sure we are not already jumping or falling
+				if (!this.jumping && !this.falling) {
+					
+					//this.setVelocity(1.2, 2.5);
+					
+					me.audio.play("jump");
+
+					// set current vel to the maximum defined value
+					// gravity will then do the rest
+					this.vel.y = -this.maxVel.y * me.timer.tick;
+					
+					// set the jumping flag
+					this.jumping = true;
+				}
+	 
+			}
 		}
+
+		else if(this.player == 2){
+
+			if ( (me.input.isKeyPressed('right2') && this.alive) || this.state=='done') {
+				
+				// unflip the sprite
+				this.flipX(false);
+				// update the entity velocity
+				this.vel.x += this.accel.x * me.timer.tick
+			}  
+			else if (me.input.isKeyPressed('left2') && this.alive) {
+				
+				// flip the sprite on horizontal axis
+				this.flipX(true);
+				// update the entity velocity
+				this.vel.x -= this.accel.x * me.timer.tick
+			}
+			else {
+
+				this.vel.x = 0;
+			}
+			
+			if (me.input.isKeyPressed('jump2') && this.alive) {
+			
+				// make sure we are not already jumping or falling
+				if (!this.jumping && !this.falling) {
+					
+					//this.setVelocity(1.2, 2.5);
+					
+					me.audio.play("jump");
+
+					// set current vel to the maximum defined value
+					// gravity will then do the rest
+					this.vel.y = -this.maxVel.y * me.timer.tick;
+					
+					// set the jumping flag
+					this.jumping = true;
+				}
+	 
+			}
+		}
+
 
 		if(this.jumping == false){
 
@@ -261,9 +315,12 @@ game.PlayerEntity = me.ObjectEntity.extend({
 
 					if(res.obj.type == 'flag'){
 
-						//this.alive = false;
-						//this.pos.x += 0.5;
-						this.state = 'done';
+						this.state = 'doneRight';
+					}
+
+					if(res.obj.type == 'zone'){
+
+						this.state = 'doneLeft'
 					}
 				} 
 				

@@ -11,11 +11,13 @@ game.npcEntity = me.ObjectEntity.extend({
 
 		this.parent(x,y,settings);
 
+		this.text = false;
 		this.text1 = settings.text1;
 		this.text2 = settings.text2;
 		this.text3 = settings.text3;
 		this.text4 = settings.text4;
 		this.move = settings.move || true;
+		this.distance = settings.distance;
 
 		this.flipX(true);
 
@@ -36,7 +38,7 @@ game.npcEntity = me.ObjectEntity.extend({
 			this.renderable.addAnimation("default",[0]);
 			this.renderable.addAnimation("walking",[1,2,3,4],140);
 		}
-		else if(settings.type == 2){
+		else if(settings.type == 5){
 			
 			this.renderable.addAnimation("default",[5]);
 			this.renderable.addAnimation("walking",[6,7,8,9],140);
@@ -68,6 +70,7 @@ game.npcEntity = me.ObjectEntity.extend({
 
 		if(res && res.type == 'mainPlayer' && game.data.npcText == false && me.input.isKeyPressed('up') ){
 
+			this.text = true;
 			this.move = false;
 			this.vel.x = 0;
 
@@ -80,8 +83,9 @@ game.npcEntity = me.ObjectEntity.extend({
 			game.data.npcText1 = this.text3;
 			game.data.npcText2 = this.text4;
 		}
-		else if(!res) {
+		else if(!res && this.text) {
 
+			this.text = false;
 			this.move = true;
 			game.data.npcText = false;		
 		}
@@ -89,7 +93,7 @@ game.npcEntity = me.ObjectEntity.extend({
 
 		// NPC Movement 
 
-		if(this.move){
+		if(this.move && this.distance > 1){
 
 			this.clock -= dt;
 
@@ -146,7 +150,7 @@ game.HUD.npcText = me.Renderable.extend( {
 
 		this.floating = true;
 
-		this.completeBar = me.loader.getImage("hintbg");
+		this.textBG = me.loader.getImage("hintbg");
 		this.font = new me.BitmapFont("6x6_font", 6);
 		this.font.set("left");
 
@@ -156,10 +160,10 @@ game.HUD.npcText = me.Renderable.extend( {
 
 		if(game.data.npcText){	
 		
-			context.drawImage(this.completeBar, 0, 95);
+			context.drawImage(this.textBG, 0, 105);
 
-			this.font.draw(context, game.data.npcText1, 10, 100);
-			this.font.draw(context, game.data.npcText2, 10, 110);
+			this.font.draw(context, game.data.npcText1, 10, 110);
+			this.font.draw(context, game.data.npcText2, 10, 120);
 		}
 	}
 });

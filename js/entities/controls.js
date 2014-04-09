@@ -108,6 +108,7 @@ game.touchUI = me.Renderable.extend({
 var screen = document.getElementById('screen');
 var fullScreenButton = document.getElementById('fullscreen');
 
+// Fullscreen polyfil
 function launchFullscreen(element) {
 	if(element.requestFullscreen) {
 		element.requestFullscreen();
@@ -171,7 +172,8 @@ var gamepadPressed = {
 
 	left: false, 
 	right: false, 
-	jump: false
+	jump: false,
+	interact: false
 };
 
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
@@ -220,6 +222,18 @@ if(isChrome){
 				
 				gamepadPressed.jump = false;
 				me.input.triggerKeyEvent(me.input.KEY.X, false);
+			}
+
+			// Interact Button
+			if(gamepad.buttons[3] >= 1){
+
+				gamepadPressed.interact = true;
+				me.input.triggerKeyEvent(me.input.KEY.UP, true);
+			}
+			else if(gamepad.buttons[3] == 0  && gamepadPressed.jump ){
+				
+				gamepadPressed.interact = false;
+				me.input.triggerKeyEvent(me.input.KEY.UP, false);
 			}
 		}
 	}

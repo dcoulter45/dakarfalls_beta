@@ -13,15 +13,15 @@ var game = {
 		hintText: '',
 		hintText2: '',
 		hasKey: false,
-		npcText: false
+		npcText: false,
+		multiplayer: false
 	},
 
 	// Run on page load.
 	onload : function () {
 		
 		// Initialize the video.
-		if (!me.video.init("screen", 180, 120, true, 3)) {
-		//if (!me.video.init("screen", 180, 120, true, 'auto')) {
+		if (!me.video.init("screen", 200, 130, true, 3)) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}
@@ -56,7 +56,7 @@ var game = {
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		me.state.set(me.state.INTRO, new game.IntroScreen());
 		 
-		// add our player entity in the entity pool
+		// entity pool
 		me.pool.register("mainPlayer", game.PlayerEntity);
 		me.pool.register("gemEntity", game.gemEntity);
 		me.pool.register("crateEntity", game.crateEntity);
@@ -76,6 +76,7 @@ var game = {
 		me.pool.register("metalBlockEntity", game.metalBlockEntity);
 		me.pool.register("flagEntity", game.flagEntity);
 		me.pool.register("levelEntity", game.levelEntity);
+		me.pool.register("zoneEntity", game.zoneEntity);
 		me.pool.register("hintEntity", game.hintEntity);
 		me.pool.register("keyEntity", game.keyEntity);
 		me.pool.register("doorEntity", game.doorEntity);
@@ -83,17 +84,23 @@ var game = {
 		me.pool.register("fallingPlatformEntity", game.fallingPlatformEntity);
 		me.pool.register("cameraEntity", game.cameraEntity);
 				 
-		// enable the keyboard
+		// key bindings
+		me.input.bindKey(me.input.KEY.R, "enter", true, false);
+		me.input.bindKey(me.input.KEY.P, "pause", true);
+		me.input.bindKey(me.input.KEY.ESC, "esc", true);
+
+		// Player 1
 		me.input.bindKey(me.input.KEY.LEFT, "left");
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.UP, "up", true);
-		me.input.bindKey(me.input.KEY.P, "pause", true);
-		me.input.bindKey(me.input.KEY.ENTER, "enter", true);
 		me.input.bindKey(me.input.KEY.X, "jump", true, false);
-		me.input.bindKey(me.input.KEY.SPACE, "jump", true, false);
 
-		//me.sys.interpolation = true;
-		//me.sys.fps = 60;
+		// Player 2
+		me.input.bindKey(me.input.KEY.A, "left2");
+		me.input.bindKey(me.input.KEY.D, "right2");
+		me.input.bindKey(me.input.KEY.W, "up2", true);
+		me.input.bindKey(me.input.KEY.SPACE, "jump2", true, false);
+
 
 		me.audio.setVolume(0);
 
@@ -116,6 +123,6 @@ var game = {
 		//me.debug.renderHitBox = true;
 		  
 		// start the game
-		me.state.change(me.state.PLAY);
+		me.state.change(me.state.MENU);
 	}
 };

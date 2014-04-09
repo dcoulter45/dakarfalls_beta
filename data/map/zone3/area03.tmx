@@ -33,7 +33,7 @@
  <imagelayer name="Parallax_layer3" width="73" height="18">
   <image source="../../img/zone3/zone3mountains.png"/>
   <properties>
-   <property name="ratio" value="0.13"/>
+   <property name="ratio" value="0.10"/>
    <property name="repeat" value="repeat-x"/>
   </properties>
  </imagelayer>
@@ -41,6 +41,7 @@
   <image source="../../img/zone3/zone3moon.png"/>
   <properties>
    <property name="ratio" value="0.10"/>
+   <property name="repeat" value="no-repeat"/>
   </properties>
  </imagelayer>
  <imagelayer name="Parallax_layer5" width="73" height="18">

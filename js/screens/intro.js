@@ -50,10 +50,10 @@ game.storyEntity = me.ObjectEntity.extend({
 
 		settings = {};
 		settings.image = "storyboard";
-		settings.spritewidth = 180;
-		settings.spriteheight = 120;
-		settings.width = 180;
-		settings.height = 120;
+		settings.spritewidth = 200;
+		settings.spriteheight = 130;
+		settings.width = 200;
+		settings.height = 130;
 
 		// parent constructor
 		this.parent(x, y, settings);

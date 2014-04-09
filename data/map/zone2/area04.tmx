@@ -27,7 +27,7 @@
   <image source="../../img/zone2/zone2sun.png"/>
   <properties>
    <property name="ratio" value="0.15"/>
-   <property name="repeat" value="repeat-x"/>
+   <property name="repeat" value="no-repeat"/>
   </properties>
  </imagelayer>
  <imagelayer name="Parallax_layer3" width="57" height="15">

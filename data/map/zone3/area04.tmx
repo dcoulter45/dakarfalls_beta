@@ -41,6 +41,7 @@
   <image source="../../img/zone3/zone3sun.png"/>
   <properties>
    <property name="ratio" value="0.10"/>
+   <property name="repeat" value="no-repeat"/>
   </properties>
  </imagelayer>
  <imagelayer name="Parallax_layer5" width="51" height="18">
