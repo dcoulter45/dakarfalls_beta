@@ -107,7 +107,6 @@ game.levelEntity = me.ObjectEntity.extend({
 				game.data.defaultGems = game.data.score;
 
 				me.levelDirector.loadLevel(this.to);
-
 			}).bind(this));
 		}
 	}
@@ -145,10 +144,50 @@ game.zoneEntity = me.ObjectEntity.extend({
 
 				localStorage.lastZone = this.to;
 				me.levelDirector.loadLevel(this.to);
+				audioSwitcher.changeTrack(this.to);
 
 			}).bind(this));
 		}
 
+	}
+});
+
+// ===============
+//  Dakar Gem
+// ===============
+
+game.dakarGemEntity = me.ObjectEntity.extend({
+
+	init: function(x, y, settings) {
+
+		settings.spritewidth = 32;
+		settings.spriteheight = 64;
+		this.parent(x, y, settings);
+
+		this.clock = 3000;
+		this.collied = false;
+	},
+
+	onCollision: function(res, obj) {
+	
+		if(obj.type == "mainPlayer" && this.collied == false){
+
+			this.collied = true;
+			me.game.world.addChild(new thanksScreen(0,0));
+		}
+	},
+
+	update: function(dt){
+
+		if(this.collied) this.clock -= dt;
+
+		if(this.clock <= 0){
+
+			me.game.viewport.fadeIn('#222222', 1000, function(){
+
+				me.levelDirector.loadLevel('zone1');
+			});	
+		}
 	}
 });
 
@@ -319,7 +358,7 @@ game.greenSwitchEntity = me.ObjectEntity.extend({
 		
 		if(res){
 
-			if((res.obj.type == "mainPlayer" || res.obj.type == 'crate' ) && this.pos.y-4 > res.obj.pos.y && this.active == false){
+			if((res.obj.type == "mainPlayer" || res.obj.type == 'crate' ) && !res.obj.jumping && this.pos.y-4 > res.obj.pos.y && this.active == false){
 
 				this.active = true;
 				this.renderable.setCurrentAnimation("down");
@@ -367,6 +406,7 @@ game.metalBlockEntity = me.ObjectEntity.extend({
 
 		this.type = 'solid';
 		this.name = 'metalBlock';
+		this.alwaysUpdate = true;
 
 		this.renderable.addAnimation("active",[22]);
 		this.renderable.addAnimation("inactive",[21]);
@@ -535,6 +575,9 @@ game.doorEntity = me.ObjectEntity.extend({
 				if(this.bigDoor){
 
 					localStorage.lastZone = this.nextArea;
+					save.data.spawn.x = 0;
+					save.data.spawn.y = 0;
+					audioSwitcher.changeTrack(this.nextArea);
 				}
 
 				// Load Level
@@ -705,6 +748,12 @@ game.spikesEntity = me.ObjectEntity.extend({
 		settings.spriteheight = 16;
 
 		this.parent(x, y, settings);
+
+		// adjust the bounding box
+		var shape = this.getShape();
+		shape.pos.x = 1;
+		shape.pos.y = 1
+		shape.resize(14, 15);
 
 		this.renderable.addAnimation("default",[1]);
 		this.renderable.setCurrentAnimation("default");

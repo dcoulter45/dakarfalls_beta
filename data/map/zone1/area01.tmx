@@ -85,7 +85,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#a40100" name="camera and flag" width="52" height="12">
-  <object name="cameraEntity" x="80" y="0" width="16" height="16">
+  <object name="cameraEntity" x="496" y="48" width="16" height="16">
    <properties>
     <property name="movement" value="player"/>
     <property name="vel" value="0.5"/>

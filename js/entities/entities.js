@@ -28,29 +28,51 @@ game.cameraEntity = me.ObjectEntity.extend({
 		}
 
 		this.player = me.game.world.getChildByName("mainPlayer")[0];
+		this.player2 = me.game.world.getChildByName("mainPlayer")[1] || false;
+
 	},
 
 	update: function(dt){
 
-		if(!this.player) this.player = me.game.world.getChildByName("mainPlayer")[0];
+		this.player = me.game.world.getChildByName("mainPlayer")[0];
+		this.player2 = me.game.world.getChildByName("mainPlayer")[1] || false;
 
-		this.pos.y = this.player.pos.y || 0;
-
-		if(this.movement == 'player'){
+		if(!this.player2 && this.movement == 'player'){
 			
+			this.pos.y = this.player.pos.y || 0;	
 			this.pos.x = this.player.pos.x+8 || 0;
+		}
+
+		else if(this.player2 && this.movement == 'player'){
+
+
+			if(this.player.pos.y >= this.player2.pos.y){
+				
+				this.pos.y = this.player.pos.y - (this.player.pos.y - this.player2.pos.y)/2;
+			}
+			else if(this.player.pos.y < this.player2.pos.y){
+
+				this.pos.y = this.player2.pos.y - (this.player2.pos.y - this.player.pos.y)/2;
+			}
+			//console.log(this.player.pos.y + " " + this.player2.pos.y);
+
+			if(this.player.pos.x >= this.player2.pos.x){
+
+				this.pos.x = this.player.pos.x - (this.player.pos.x - this.player2.pos.x)/2;
+			}
+			else if(this.player.pos.x < this.player2.pos.x){
+
+				this.pos.x = this.player2.pos.x - (this.player2.pos.x - this.player.pos.x)/2;
+			}
 		}
 
 		else if( this.movement == 'scrolling' && game.data.level != 'complete'){
 			
+			this.pos.y = this.player.pos.y || 0;
 			this.vel.x += this.accel.x * me.timer.tick;	
 			this.updateMovement();
 			this.parent(dt);
 			return true;
-		}
-		else{
-
-			//this.vel.x = 0;
 		}
 
 		
@@ -82,12 +104,14 @@ game.fallingPlatformEntity = me.ObjectEntity.extend({
 		this.renderable.addAnimation("zone1",[27]);
 		this.renderable.addAnimation("zone2",[28]);
 		this.renderable.addAnimation("zone3",[29]);
+		this.renderable.addAnimation("zone4",[31]);
 
 		this.zone = me.game.currentLevel.levelId.split("_")[0];
 		
 		if(this.zone=='zone1') this.renderable.setCurrentAnimation("zone1");
 		else if(this.zone=='zone2') this.renderable.setCurrentAnimation("zone2");
 		else if(this.zone=='zone3') this.renderable.setCurrentAnimation("zone3");
+		else if(this.zone=='zone4') this.renderable.setCurrentAnimation("zone4");
 	},
 
 	onCollision: function(res,obj) {

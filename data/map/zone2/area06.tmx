@@ -33,7 +33,7 @@
  <imagelayer name="Parallax_layer3" width="41" height="19">
   <image source="../../img/zone2/zone2clouds.png"/>
   <properties>
-   <property name="ratio" value="0.15"/>
+   <property name="ratio" value="0.13"/>
    <property name="repeat" value="repeat-x"/>
   </properties>
  </imagelayer>

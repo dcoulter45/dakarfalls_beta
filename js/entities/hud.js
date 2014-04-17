@@ -64,6 +64,26 @@ game.HUD.KeyItem = me.Renderable.extend( {
 	}
 });
 
+// =====================
+//  Thanks for playing
+// =====================
+
+var thanksScreen = me.GUI_Object.extend({
+
+	init: function(x, y) {
+
+		var settings = {}
+        settings.image = "thanks";
+        settings.spritewidth = 200;
+        settings.spriteheight = 130;
+        // parent constructor
+        this.parent(x, y, settings);
+        // define the object z order
+        this.z = 99;
+
+	}
+});
+
 
 // ===========
 // Score

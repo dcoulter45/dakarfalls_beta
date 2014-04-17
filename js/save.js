@@ -76,6 +76,20 @@ var save = {
 		}
 	},
 
+	reset: function(){
+
+		// Reset gem counts
+		for (i=1; i<=9; i++) save.data.zone1["area0"+i].gems = 0;
+		for (i=1; i<=9; i++) save.data.zone2["area0"+i].gems = 0;
+		for (i=1; i<=9; i++) save.data.zone3["area0"+i].gems = 0;
+		for (i=1; i<=9; i++) save.data.zone4["area0"+i].gems = 0;
+		
+		save.data.zone1.gems = 0;
+		save.data.zone2.gems = 0;
+		save.data.zone3.gems = 0;
+		save.data.zone4.gems = 0;
+	},
+
 	add: function(zone,area,gems) {
 
 		save.data[zone][area].gems = gems;

@@ -260,6 +260,12 @@ var saveButton = me.GUI_Object.extend({
 
 		if(deleteSave == true){
 
+			// Delete local storage items
+			localStorage.removeItem('save');
+			localStorage.removeItem('lastZone');
+
+			// Reset save data
+			save.reset();
 			alert("Save Data Deleted");
 		}
 		else{

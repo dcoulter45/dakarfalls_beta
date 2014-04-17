@@ -17,6 +17,7 @@ game.resources = [
 	// Objects
 
 		{name: "objects", type:"image", src: "data/img/objects/objects.png"},
+		{name: "dakarGem", type:"image", src: "data/img/objects/dakarGem.png"},
 		{name: "balloon", type:"image", src: "data/img/objects/balloon.png"},
 
 	// GUI
@@ -95,12 +96,11 @@ game.resources = [
 		
 		{name: "black", type:"image", src: "data/img/title/black.png"},
 		{name: "title_play", type:"image", src: "data/img/title/play.png"},
-		{name: "title_play2", type:"image", src: "data/img/title/play2.png"},
 		{name: "title_coop", type:"image", src: "data/img/title/coop.png"},
 		{name: "title_newgame", type:"image", src: "data/img/title/newgame.png"},
 		{name: "title_options", type:"image", src: "data/img/title/options.png"},
 		{name: "title_bg", type:"image", src: "data/img/title/bg_sunset.png"},
-		{name: "title", type:"image", src: "data/img/title/title.png"},
+		{name: "thanks", type:"image", src: "data/img/title/thanks.png"},
 		{name: "options_back", type:"image", src: "data/img/title/back.png"},
 		{name: "options_fullscreen", type:"image", src: "data/img/title/fullscreen.png"},
 		{name: "options_save", type:"image", src: "data/img/title/save.png"},
@@ -119,6 +119,7 @@ game.resources = [
 		{name: "zone2", type: "tmx", src: "data/map/zonehub/zone2.tmx"},
 		{name: "zone3", type: "tmx", src: "data/map/zonehub/zone3.tmx"},
 		{name: "zone4", type: "tmx", src: "data/map/zonehub/zone4.tmx"},
+		{name: "zone9", type: "tmx", src: "data/map/zonehub/zone9.tmx"},
 
 	// Zone 1
 
@@ -145,6 +146,8 @@ game.resources = [
 		{name: "zone2_area06", type: "tmx", src: "data/map/zone2/area06.tmx"},
 		{name: "zone2_area06b", type: "tmx", src: "data/map/zone2/area06b.tmx"},
 		{name: "zone2_area07", type: "tmx", src: "data/map/zone2/area07.tmx"},
+		{name: "zone2_area07b", type: "tmx", src: "data/map/zone2/area07b.tmx"},
+		{name: "zone2_area07c", type: "tmx", src: "data/map/zone2/area07c.tmx"},
 
 	// Zone 3
 
@@ -168,10 +171,21 @@ game.resources = [
 		{name: "zone4_area01", type: "tmx", src: "data/map/zone4/area01.tmx"},
 		{name: "zone4_area01b", type: "tmx", src: "data/map/zone4/area01b.tmx"},
 		{name: "zone4_area02", type: "tmx", src: "data/map/zone4/area02.tmx"},
+		{name: "zone4_area02b", type: "tmx", src: "data/map/zone4/area02b.tmx"},
+		{name: "zone4_area03", type: "tmx", src: "data/map/zone4/area03.tmx"},
+		{name: "zone4_area03b", type: "tmx", src: "data/map/zone4/area03b.tmx"},
+		{name: "zone4_area04", type: "tmx", src: "data/map/zone4/area04.tmx"},
+		{name: "zone4_area04b", type: "tmx", src: "data/map/zone4/area04b.tmx"},
+		{name: "zone4_area05", type: "tmx", src: "data/map/zone4/area05.tmx"},
+		{name: "zone4_area05b", type: "tmx", src: "data/map/zone4/area05b.tmx"},
+		{name: "zone4_area06", type: "tmx", src: "data/map/zone4/area06.tmx"},
 
 	 // Multiplayer
 
-	 	{name: "zone9_area00", type: "tmx", src: "data/map/multi/area01.tmx"},
+	 	{name: "zone9_area01", type: "tmx", src: "data/map/zone9/area01.tmx"},
+	 	{name: "zone9_area02", type: "tmx", src: "data/map/zone9/area02.tmx"},
+	 	{name: "zone9_area03", type: "tmx", src: "data/map/zone9/area03.tmx"},
+
 
 	// SFX 
 
@@ -184,5 +198,9 @@ game.resources = [
 	
 	// BGM
 		
-		{name: "thismachinethinks", type: "audio", src: "data/bgm/", channel : 2}
+		//{name: "thismachinethinks", type: "audio", src: "data/bgm/", channel : 2},
+		{name: "zone1_whiteKnighting", type: "audio", src: "data/bgm/", channel : 2},
+		{name: "zone2_b3", type: "audio", src: "data/bgm/", channel : 2},
+		{name: "zone3_eowin", type: "audio", src: "data/bgm/", channel : 2},
+		{name: "zone4_made2fade", type: "audio", src: "data/bgm/", channel : 2}
 ];

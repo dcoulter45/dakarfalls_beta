@@ -34,7 +34,7 @@ var game = {
 		}
 
 		// Initialize the audio.
-		me.audio.init("mp3,ogg");
+		me.audio.init("mp3, ogg");
 
 		// Set a callback to run when loading is complete.
 		me.loader.onload = this.loaded.bind(this);
@@ -83,6 +83,7 @@ var game = {
 		me.pool.register("platformEntity", game.platformEntity);
 		me.pool.register("fallingPlatformEntity", game.fallingPlatformEntity);
 		me.pool.register("cameraEntity", game.cameraEntity);
+		me.pool.register("dakarGemEntity", game.dakarGemEntity);
 				 
 		// key bindings
 		me.input.bindKey(me.input.KEY.R, "enter", true, false);
@@ -92,17 +93,17 @@ var game = {
 		// Player 1
 		me.input.bindKey(me.input.KEY.LEFT, "left");
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
-		me.input.bindKey(me.input.KEY.UP, "up", true);
+		me.input.bindKey(me.input.KEY.SPACE, "up", true);
+		me.input.bindKey(me.input.KEY.UP, "jump", true, false);
 		me.input.bindKey(me.input.KEY.X, "jump", true, false);
 
 		// Player 2
 		me.input.bindKey(me.input.KEY.A, "left2");
 		me.input.bindKey(me.input.KEY.D, "right2");
-		me.input.bindKey(me.input.KEY.W, "up2", true);
-		me.input.bindKey(me.input.KEY.SPACE, "jump2", true, false);
+		me.input.bindKey(me.input.KEY.W, "jump2", true, false);
 
 
-		me.audio.setVolume(0);
+		me.audio.setVolume(3);
 
 		save.init();
 

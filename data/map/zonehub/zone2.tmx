@@ -84,7 +84,7 @@
   <object name="doorEntity" x="672" y="176" width="32" height="32">
    <properties>
     <property name="area" value="zone3"/>
-    <property name="gems" value="35"/>
+    <property name="gems" value="2"/>
    </properties>
   </object>
   <object name="zoneEntity" x="0" y="176" width="16" height="16">
@@ -102,7 +102,7 @@
   <object name="doorEntity" x="560" y="176" width="16" height="16">
    <properties>
     <property name="area" value="zone2_area07"/>
-    <property name="gems" value="8"/>
+    <property name="gems" value="10"/>
     <property name="time" value="sun"/>
    </properties>
   </object>

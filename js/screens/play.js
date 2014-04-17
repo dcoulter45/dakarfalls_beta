@@ -22,11 +22,11 @@ game.PlayScreen = me.ScreenObject.extend({
 		// Multiplayer
 		else{
 
-			me.levelDirector.loadLevel("zone9_area00");
+			me.levelDirector.loadLevel(lastZone);
 		}
 		
-
-		me.audio.play("thisMachineThinks", true); // loop audio
+		audioSwitcher.changeTrack(lastZone);
+		//me.audio.play("thisMachineThinks", true); // loop audio
 		 
 		// add our HUD to the game world
 		this.HUD = new game.HUD.Container();

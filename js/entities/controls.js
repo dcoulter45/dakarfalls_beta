@@ -135,6 +135,35 @@ if(fullScreenButton){
 	});
 }
 
+// ================
+// Audio Switcher
+// ================
+
+var audioSwitcher = {
+
+	changeTrack:function(area){
+
+		me.audio.stopTrack();
+
+		if(area == "zone1"){
+			
+			me.audio.playTrack("zone1_whiteKnighting");
+		}
+		else if(area == "zone2"){
+
+			me.audio.playTrack("zone2_b3");
+		}
+		else if(area == "zone3"){
+			
+			me.audio.playTrack("zone3_eowin");
+		}
+		else if(area == "zone4"){
+			
+			me.audio.playTrack("zone4_made2fade");
+		}
+	}
+}
+
 // ==============
 // Mute Button
 // ==============
@@ -176,6 +205,14 @@ var gamepadPressed = {
 	interact: false
 };
 
+var gamepad2Pressed = { 
+
+	left: false, 
+	right: false, 
+	jump: false,
+	interact: false
+};
+
 var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
 if(isChrome){
@@ -185,9 +222,10 @@ if(isChrome){
 		window.webkitRequestAnimationFrame(updateStatus);
 
 		var gamepad = navigator.webkitGetGamepads && navigator.webkitGetGamepads()[0];
+		var gamepad2 = navigator.webkitGetGamepads()[1] || false;
 
 		if(gamepad){
-		
+
 			// Right Analouge Stick
 			if( gamepad.axes[0] > 0.3 ){
 
@@ -234,6 +272,45 @@ if(isChrome){
 				
 				gamepadPressed.interact = false;
 				me.input.triggerKeyEvent(me.input.KEY.UP, false);
+			}
+		}
+
+		if(gamepad2){
+
+			// Right Analouge Stick
+			if( gamepad2.axes[0] > 0.3 ){
+
+				gamepad2Pressed.right = true;
+				me.input.triggerKeyEvent(me.input.KEY.D, true);
+			}
+			else if( gamepad2.axes[0] < 0.3  && gamepad2Pressed.right ){
+
+				gamepad2Pressed.right = false;
+				me.input.triggerKeyEvent(me.input.KEY.D, false);
+			}
+
+			// Left Analouge Stick
+			if( gamepad2.axes[0] < -0.3 ){
+
+				gamepad2Pressed.left = true;
+				me.input.triggerKeyEvent(me.input.KEY.A, true);
+			}
+			else if( gamepad2.axes[0] > -0.3  && gamepad2Pressed.left ){
+
+				gamepad2Pressed.left = false;
+				me.input.triggerKeyEvent(me.input.KEY.A, false);
+			}
+
+			// Jump Button
+			if(gamepad2.buttons[0] >= 1){
+
+				gamepad2Pressed.jump = true;
+				me.input.triggerKeyEvent(me.input.KEY.SPACE, true);
+			}
+			else if(gamepad2.buttons[0] == 0  && gamepad2Pressed.jump ){
+				
+				gamepad2Pressed.jump = false;
+				me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
 			}
 		}
 	}
