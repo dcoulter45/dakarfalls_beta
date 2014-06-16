@@ -1,0 +1,14 @@
+{
+
+	"name": "Dakar Falls",
+	"version": "0.1.0",
+	"main": "index.html",
+	"window": {
+		"title": "Dakar Falls",
+		"toolbar": true,
+		"frame": true,
+		"width": 800,
+		"height": 520
+	}
+
+}

@@ -99,7 +99,7 @@
   <object name="doorEntity" x="1024" y="112" width="32" height="32">
    <properties>
     <property name="area" value="zone2"/>
-    <property name="gems" value="2"/>
+    <property name="gems" value="38"/>
    </properties>
   </object>
  </objectgroup>
@@ -146,16 +146,6 @@
     <property name="type" value="4"/>
    </properties>
   </object>
-  <object name="npcEntity" x="448" y="96" width="16" height="16">
-   <properties>
-    <property name="distance" value="3"/>
-    <property name="text1" value="MOST OF THESE DOORS APPEAR"/>
-    <property name="text2" value="TO BE CLOSED"/>
-    <property name="text3" value="IF YOU FIND SOME GEMS FROM THE"/>
-    <property name="text4" value="SURFACE MORE MIGHT OPEN"/>
-    <property name="type" value="1"/>
-   </properties>
-  </object>
   <object name="npcEntity" x="816" y="128" width="16" height="16">
    <properties>
     <property name="distance" value="4"/>
@@ -172,6 +162,16 @@
     <property name="text3" value="BUT IT SEEMS WE NEED LOTS"/>
     <property name="text4" value="OF GEMS TO OPEN IT"/>
     <property name="type" value="3"/>
+   </properties>
+  </object>
+  <object name="npcEntity" x="528" y="112" width="16" height="16">
+   <properties>
+    <property name="distance" value="3"/>
+    <property name="text1" value="DID YOU KNOW SOME LEVELS"/>
+    <property name="text2" value="HAVE HIDDEN GEMS"/>
+    <property name="text3" value="TRY CHECKING FOR THEM"/>
+    <property name="text4" value="BEHIND ODD LOOKING WALLS"/>
+    <property name="type" value="1"/>
    </properties>
   </object>
  </objectgroup>

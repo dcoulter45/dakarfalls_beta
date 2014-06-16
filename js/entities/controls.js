@@ -119,7 +119,7 @@ function launchFullscreen(element) {
 	} else if(element.msRequestFullscreen) {
 		element.msRequestFullscreen();
 	} else {
-
+		
 		screen.className = "fullscreen";
 
 		// Trigger window resize to force melonjs to re-scale
@@ -210,6 +210,7 @@ var gamepad2Pressed = {
 	left: false, 
 	right: false, 
 	jump: false,
+	start: false,
 	interact: false
 };
 
@@ -262,16 +263,28 @@ if(isChrome){
 				me.input.triggerKeyEvent(me.input.KEY.X, false);
 			}
 
+			// Start Button
+			if(gamepad.buttons[9] >= 1){
+
+				gamepadPressed.start = true;
+				me.input.triggerKeyEvent(me.input.KEY.P, true);
+			}
+			else if(gamepad.buttons[9] == 0  && gamepadPressed.start ){
+				
+				gamepadPressed.start = false;
+				me.input.triggerKeyEvent(me.input.KEY.P, false);
+			}
+
 			// Interact Button
 			if(gamepad.buttons[3] >= 1){
 
 				gamepadPressed.interact = true;
-				me.input.triggerKeyEvent(me.input.KEY.UP, true);
+				me.input.triggerKeyEvent(me.input.KEY.SPACE, true);
 			}
-			else if(gamepad.buttons[3] == 0  && gamepadPressed.jump ){
+			else if(gamepad.buttons[3] == 0  && gamepadPressed.interact ){
 				
 				gamepadPressed.interact = false;
-				me.input.triggerKeyEvent(me.input.KEY.UP, false);
+				me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
 			}
 		}
 

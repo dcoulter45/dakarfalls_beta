@@ -380,7 +380,7 @@ game.PlayerEntity = me.ObjectEntity.extend({
 					me.state.resume();
 				}
 
-				if(me.input.isKeyPressed("enter")) {
+				if(me.input.isKeyPressed("up")) {
 				
 					clearInterval(resume_loop);
 					me.state.resume();

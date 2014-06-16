@@ -91,11 +91,6 @@
     <property name="totalGems" value="8"/>
    </properties>
   </object>
-  <object name="spikesEntity" x="448" y="176" width="16" height="16">
-   <properties>
-    <property name="image" value="spikes"/>
-   </properties>
-  </object>
   <object name="spikeBallEntity" x="624" y="192" width="16" height="16">
    <properties>
     <property name="direction" value="y"/>

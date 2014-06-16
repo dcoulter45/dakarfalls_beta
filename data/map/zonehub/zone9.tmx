@@ -60,31 +60,31 @@
     <property name="time" value="night"/>
    </properties>
   </object>
-  <object name="doorEntity" x="304" y="32" width="16" height="16">
+  <object name="doorEntity" x="352" y="112" width="16" height="16">
    <properties>
-    <property name="area" value="zone4_area04"/>
-    <property name="gems" value="6"/>
+    <property name="area" value="zone9_area04"/>
+    <property name="gems" value="3"/>
     <property name="time" value="sun"/>
    </properties>
   </object>
-  <object name="doorEntity" x="336" y="32" width="16" height="16">
+  <object name="doorEntity" x="416" y="80" width="16" height="16">
    <properties>
-    <property name="area" value="zone3_area05"/>
-    <property name="gems" value="8"/>
+    <property name="area" value="zone9_area05"/>
+    <property name="gems" value="3"/>
     <property name="time" value="sunset"/>
    </properties>
   </object>
-  <object name="doorEntity" x="368" y="32" width="16" height="16">
+  <object name="doorEntity" x="512" y="96" width="16" height="16">
    <properties>
-    <property name="area" value="zone3_area06"/>
-    <property name="gems" value="6"/>
+    <property name="area" value="zone9_area06"/>
+    <property name="gems" value="3"/>
     <property name="time" value="night"/>
    </properties>
   </object>
-  <object name="doorEntity" x="400" y="32" width="16" height="16">
+  <object name="doorEntity" x="592" y="112" width="16" height="16">
    <properties>
-    <property name="area" value="zone3_area07"/>
-    <property name="gems" value="10"/>
+    <property name="area" value="zone9_area08"/>
+    <property name="gems" value="4"/>
     <property name="time" value="sun"/>
    </properties>
   </object>

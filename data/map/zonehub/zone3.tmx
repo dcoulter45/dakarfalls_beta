@@ -91,7 +91,7 @@
   <object name="doorEntity" x="688" y="80" width="32" height="32">
    <properties>
     <property name="area" value="zone4"/>
-    <property name="gems" value="0"/>
+    <property name="gems" value="35"/>
     <property name="time" value="night"/>
    </properties>
   </object>
@@ -129,7 +129,8 @@
   <object name="npcEntity" x="592" y="96" width="16" height="16">
    <properties>
     <property name="distance" value="3"/>
-    <property name="text1" value="YOUR NEARLY THERE DUDE"/>
+    <property name="text1" value="WOAH, THAT'S A LOT OF GEMS YOU'VE"/>
+    <property name="text2" value="GOT THERE!"/>
     <property name="type" value="1"/>
    </properties>
   </object>

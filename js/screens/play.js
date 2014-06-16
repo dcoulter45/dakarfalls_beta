@@ -22,7 +22,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		// Multiplayer
 		else{
 
-			me.levelDirector.loadLevel(lastZone);
+			me.levelDirector.loadLevel('zone9');
 		}
 		
 		audioSwitcher.changeTrack(lastZone);

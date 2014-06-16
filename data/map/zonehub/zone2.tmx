@@ -84,7 +84,7 @@
   <object name="doorEntity" x="672" y="176" width="32" height="32">
    <properties>
     <property name="area" value="zone3"/>
-    <property name="gems" value="2"/>
+    <property name="gems" value="46"/>
    </properties>
   </object>
   <object name="zoneEntity" x="0" y="176" width="16" height="16">
@@ -111,10 +111,10 @@
   <object name="npcEntity" x="80" y="192" width="16" height="16">
    <properties>
     <property name="distance" value="3"/>
-    <property name="text1" value="DID YOU KNOW SOME LEVELS"/>
-    <property name="text2" value="HAVE HIDDEN GEMS"/>
-    <property name="text3" value="TRY CHECKING FOR THEM"/>
-    <property name="text4" value="BEHIND ODD LOOKING WALLS"/>
+    <property name="text1" value="THESE TUNNELS LEAD TO THE OLD"/>
+    <property name="text2" value="TEMPLE'S. THEY USED TO BE A PLACE"/>
+    <property name="text3" value="FOR WORSHIP BEFORE THEY WERE"/>
+    <property name="text4" value="ABANDONED."/>
     <property name="type" value="1"/>
    </properties>
   </object>
@@ -126,8 +126,10 @@
   <object name="npcEntity" x="400" y="176" width="16" height="16">
    <properties>
     <property name="distance" value="3"/>
-    <property name="text1" value="ITS SO DULL DOWN HERE."/>
-    <property name="text2" value="I MISS WATCHING THE SUN SET"/>
+    <property name="text1" value="THOSE GHOULS UP THERE USED"/>
+    <property name="text2" value="RAVAGE THESE LANDS YEARS AGO."/>
+    <property name="text3" value="THAT WAS UNTIL WE CREATED A "/>
+    <property name="text4" value="MYSTICAL GEM TO REPEL THEM."/>
     <property name="type" value="3"/>
    </properties>
   </object>

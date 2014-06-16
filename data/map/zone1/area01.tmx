@@ -58,34 +58,14 @@
     <property name="spritewidth" value="16"/>
    </properties>
   </object>
-  <object name="hintEntity" x="80" y="144" width="16" height="16">
-   <properties>
-    <property name="text" value="COLLECT GEMS TO HELP UNLOCK"/>
-    <property name="text2" value="NEW LEVELS"/>
-   </properties>
-  </object>
-  <object name="hintEntity" x="480" y="128" width="16" height="16">
-   <properties>
-    <property name="image" value="hint"/>
-    <property name="text" value="TRY PUSHING CRATES AROUND"/>
-    <property name="text2" value=""/>
-   </properties>
-  </object>
   <object name="spikesEntity" x="640" y="112" width="16" height="16">
    <properties>
     <property name="image" value="spikes"/>
    </properties>
   </object>
-  <object name="hintEntity" x="720" y="96" width="16" height="16">
-   <properties>
-    <property name="image" value="hint"/>
-    <property name="text" value="WATCH OUT, IN THE NEXT LEVEL"/>
-    <property name="text2" value="YOU'LL HAVE TO MOVE FAST"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup color="#a40100" name="camera and flag" width="52" height="12">
-  <object name="cameraEntity" x="496" y="48" width="16" height="16">
+  <object name="cameraEntity" x="16" y="80" width="16" height="16">
    <properties>
     <property name="movement" value="player"/>
     <property name="vel" value="0.5"/>

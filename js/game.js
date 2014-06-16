@@ -21,7 +21,7 @@ var game = {
 	onload : function () {
 		
 		// Initialize the video.
-		if (!me.video.init("screen", 200, 130, true, 3)) {
+		if (!me.video.init("screen", 200, 130, true, 2)) {
 			alert("Your browser does not support HTML5 canvas.");
 			return;
 		}
@@ -86,9 +86,7 @@ var game = {
 		me.pool.register("dakarGemEntity", game.dakarGemEntity);
 				 
 		// key bindings
-		me.input.bindKey(me.input.KEY.R, "enter", true, false);
 		me.input.bindKey(me.input.KEY.P, "pause", true);
-		me.input.bindKey(me.input.KEY.ESC, "esc", true);
 
 		// Player 1
 		me.input.bindKey(me.input.KEY.LEFT, "left");

@@ -185,6 +185,9 @@ game.resources = [
 	 	{name: "zone9_area01", type: "tmx", src: "data/map/zone9/area01.tmx"},
 	 	{name: "zone9_area02", type: "tmx", src: "data/map/zone9/area02.tmx"},
 	 	{name: "zone9_area03", type: "tmx", src: "data/map/zone9/area03.tmx"},
+	 	{name: "zone9_area04", type: "tmx", src: "data/map/zone9/area04.tmx"},
+	 	{name: "zone9_area05", type: "tmx", src: "data/map/zone9/area05.tmx"},
+	 	{name: "zone9_area06", type: "tmx", src: "data/map/zone9/area06.tmx"},
 
 
 	// SFX 
